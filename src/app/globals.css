@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-maroon: #520000;
+  --color-maroon-dark: #380000;
+  --color-maroon-rich: #460000;
+  --color-maroon-light: #720909;
+  
+  --color-beige: #D7C3B1;
+  --color-beige-light: #EBE0D5;
+  --color-beige-soft: #F4ECE3;
+  --color-canvas: #FAF6F0;
+  --color-surface: #FFFFFF;
+  --color-charcoal: #140202;
+  --color-text-muted: #5A4842;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color-scheme: light;
+    background-color: var(--color-canvas);
+    color: var(--color-charcoal);
+    font-family: var(--font-inter), system-ui, sans-serif;
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-charcoal);
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background-color: var(--color-maroon);
+    color: #ffffff;
+  }
+}
+
+/* Custom refined scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F4ECE3;
+}
+::-webkit-scrollbar-thumb {
+  background: #D7C3B1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #520000;
+}
+
+/* Editorial Glass & Card utility treatments */
+.editorial-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(215, 195, 177, 0.5);
+  box-shadow: 0 4px 20px -2px rgba(82, 0, 0, 0.04);
+}
+
+.editorial-card-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.editorial-card-hover:hover {
+  border-color: #520000;
+  box-shadow: 0 16px 36px -8px rgba(82, 0, 0, 0.12);
+  transform: translateY(-3px);
+}
+
+.editorial-pill {
+  background: rgba(82, 0, 0, 0.05);
+  border: 1px solid rgba(82, 0, 0, 0.18);
+  color: #520000;
+}
+
+.maroon-card {
+  background: linear-gradient(145deg, #420202 0%, #300101 100%);
+  border: 1px solid rgba(215, 195, 177, 0.3);
+  color: #FAF6F0;
+}
+
+/* Dual row infinite marquee ticker */
+@keyframes marquee-left {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 42s linear infinite;
+}
+
+.animate-marquee-left:hover {
+  animation-play-state: paused;
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marquee-right 42s linear infinite;
+}
+
+.animate-marquee-right:hover {
+  animation-play-state: paused;
+}

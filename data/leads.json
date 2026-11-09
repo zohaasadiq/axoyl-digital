@@ -1,0 +1,38 @@
+[
+  {
+    "id": "lead_1793990616044",
+    "timestamp": "2026-11-06T18:43:36.044Z",
+    "type": "social_media_audit",
+    "brandName": "N/A",
+    "handle": "N/A",
+    "contact": "N/A",
+    "objective": "Full SMM Management",
+    "industry": "Skincare, Beauty & Organic Brands",
+    "message": "",
+    "ip": "::1",
+    "status": "new",
+    "routedTo": [
+      "data/leads.json",
+      "Esha WhatsApp (+92 349 2976505)",
+      "axoyldigital@gmail.com"
+    ]
+  },
+  {
+    "id": "lead_1793990324254",
+    "timestamp": "2026-11-06T18:38:44.255Z",
+    "type": "social_audit",
+    "brandName": "Test Brand",
+    "handle": "@test",
+    "contact": "+923001234567",
+    "objective": "Full SMM Management",
+    "industry": "Skincare",
+    "message": "",
+    "ip": "::1",
+    "status": "new",
+    "routedTo": [
+      "data/leads.json",
+      "Esha WhatsApp (+92 349 2976505)",
+      "axoyldigital@gmail.com"
+    ]
+  }
+]

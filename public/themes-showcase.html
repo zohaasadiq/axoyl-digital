@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Axoyl Digital — 22 Brand Themes & Dark/Light System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #07080a;
+      --card-bg: #101115;
+      --border: rgba(255, 255, 255, 0.1);
+      --text: #f4f4f6;
+      --muted: #9ca3af;
+      --accent: #d4ff00;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.6;
+      padding: 50px 24px;
+    }
+    .header {
+      max-width: 1200px;
+      margin: 0 auto 40px auto;
+      text-align: center;
+    }
+    .pill {
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      background: rgba(212, 255, 0, 0.1);
+      color: var(--accent);
+      border: 1px solid rgba(212, 255, 0, 0.3);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 46px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 14px;
+    }
+    p.subtitle {
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .section-title {
+      max-width: 1300px;
+      margin: 50px auto 24px auto;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .section-title h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 26px;
+      color: #ffffff;
+    }
+    .section-title .line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 32px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .theme-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .theme-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 24px 48px -15px rgba(0,0,0,0.8);
+    }
+    .img-wrap {
+      width: 100%;
+      height: 250px;
+      background: #000;
+      overflow: hidden;
+      position: relative;
+    }
+    .img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      transition: transform 0.4s ease;
+    }
+    .theme-card:hover .img-wrap img {
+      transform: scale(1.03);
+    }
+    .mode-tag {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .card-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .theme-num {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 6px;
+    }
+    .theme-title {
+      font-size: 21px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .theme-desc {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+    .dual-swatches-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 18px;
+    }
+    .swatch-row-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .swatches {
+      display: flex;
+      gap: 8px;
+    }
+    .swatch {
+      flex: 1;
+      height: 38px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+    .swatch:hover {
+      transform: scale(1.05);
+    }
+    .badge {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #e4e4e7;
+    }
+    footer {
+      max-width: 1200px;
+      margin: 80px auto 0 auto;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--border);
+      padding-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="pill">Visual Brand System</div>
+    <h1>Axoyl Digital — 22 Brand Themes</h1>
+    <p class="subtitle">Complete visual library of 22 curated agency aesthetics inspired by Trifid Media (Dubai), including 10 brand-new dual Dark & Light mode concepts.</p>
+  </header>
+
+  <!-- Dual Mode Collection -->
+  <div class="section-title">
+    <h2>Dual Dark & Light Mode Collection (Themes 13–22)</h2>
+    <div class="line"></div>
+  </div>
+
+  <main class="grid">
+
+    <!-- Theme 13 -->
+    <article class="theme-card">
+      <div class="img-wrap">
+        <img src="theme-mockups/theme_13_nordic_frost_electric_glacier_1794244614475.jpg" alt="Theme 13: Nordic Frost & Electric Glacier">
+        <span class="mode-tag">Split Dark & Light</span>
+      </div>
+      <div class="card-body">
+        <span class="theme-num">Theme 13 • Polar Minimalist</span>
+        <h2 class="theme-title">Nordic Frost & Electric Glacier</h2>
+        <p class="theme-desc">Scandinavian cool meets Dubai tech. Arctic obsidian and glacial white with electrifying glacier blue accents.</p>
+        <div class="dual-swatches-box">
+          <div class="swatch-row-title"><span>Dark Mode</span> <span>Base / Text / Accent</span></div>
+          <div class="swatches" style="margin-bottom:10px;">
+            <div class="swatch" style="background:#060B10; color:#fff;">#060B10</div>
+            <div class="swatch" style="background:#F0F8FF; color:#000;">#F0F8FF</div>
+            <div class="swatch" style="background:#00D2FF; color:#000;">#00D2FF</div>
+          </div>
+          <div class="swatch-row-title"><span>Light Mode</span> <span>Base / Text / Accent</span></div>
+          <div class="swatches">
+            <div class="swatch" style="background:#F7FAFD; color:#000;">#F7FAFD</div>
+            <div class="swatch" style="background:#0A192F; color:#fff;">#0A192F</div>
+            <div class="swatch" style="background:#0099FF; color:#fff;">#0099FF</div>
+          </div>
+        </div>
+        <span class="badge">Polar Minimalist & Tech Media</span>
+      </div>
+    </article>
+
+    <!-- Theme 14 -->
+    <article class="theme-card">
+      <div class="img-wrap">
+        <img src="theme-mockups/theme_14_kyoto_noir_imperial_vermilion_1794244636436.jpg" alt="Theme 14: Kyoto Noir & Imperial Vermilion">
+        <span class="mode-tag">Split Dark & Light</span>
+      </div>
+      <div class="card-body">
+        <span class="theme-num">Theme 14 • East-Asian Luxury</span>
+        <h2 class="theme-title">Kyoto Noir & Imperial Vermilion</h2>
+        <p class="theme-desc">Japanese lacquer craft & avant-garde dining. Sumi ink black and warm washi paper contrasted with vibrant vermilion orange-red.</p>
+        <div class="dual-swatches-box">
+          <div class="swatch-row-title"><span>Dark Mode</span> <span>Base / Text / Accent</span></div>
+          <div class="swatches" style="margin-bottom:10px;">
+            <div class="swatch" style="background:#0A0A0B; color:#fff;">#0A0A0B</div>
+            <div class="swatch" style="background:#FBF9F5; color:#000;">#FBF9F5</div>
+            <div class="swatch" style="background:#FF4500; color:#fff;">#FF4500</div>
+          </div>
+          <div class="swatch-row-title"><span>Light Mode</span> <span>Base / Text / Accent</span></div>
+          <div class="swatches">
+            <div class="swatch" style="background:#F7F4EE; color:#000;">#F7F4EE</div>
+            <div class="swatch" style="background:#151417; color:#fff;">#151417</div>
+            <div class="swatch" style="background:#E03A00; color:#fff;">#E03A00</div>
+          </div>
+        </div>
+        <span class="badge">Artisanal Craft & Luxury Dining</span>
+      </div>
+    </article>
+
+    <!-- Theme 15 -->
+    <article class="theme-card">
+      <div class="img-wrap">
+        <img src="theme-mockups/theme_15_sahara_sandstone_electric_marigold_1794244660609.jpg" alt="Theme 15: Sahara Sandstone & Electric Marigold">
+        <span class="mode-tag">Split Dark & Light</span>
+      </div>
+      <div class="card-body">
+        <span class="theme-num">Theme 15 • Arabian Heritage</span>
+        <h2 class="theme-title">Sahara Sandstone & Marigold</h2>
+        <p class="theme-desc">Sun-drenched Arabian desert dunes and glowing golden marigold yellow. Perfect for Dubai tourism, events & hospitality.</p>
+        <div class="dual-swatches-box">
+          <div class="swatch-row-title"><span>Dark Mode</span> <span>Base / Text / Accent</span></div>
+          <div class="swatches" style="margin-bottom:10px;">
+            <div class="swatch" style="background:#120E0A; color:#fff;">#120E0A</div>
+            <div class="swatch" style="background:#F8F3EB; color:#000;">#F8F3EB</div>
+            <div class="swatch" style="background:#FFB800; color:#000;">#FFB800</div>
+          </div>
+          <div class="swatch-row-title"><span>Light Mode</span> <span>Base / Text / Accent</span></div>
+          <div class="swatches">
+            <div class="swatch" style="background:#FAF5EE; color:#000;">#FAF5EE</div>
+            <div class="swatch" style="background:#1F1710; color:#fff;">#1F1710</div>
+            <div class="swatch" style="background:#E69E00; color:#fff;">#E69E00</div>
+          </div>
+        </div>
+        <span class="badge">Dubai Hospitality & Festivals</span>
+      </div>
+    </article>
+
+    <!-- Theme 16 -->
+    <article class="theme-card">
+      <div class="img-wrap">
+        <img src="theme-mockups/theme_16_bioluminescent_abyss_acid_chartreuse_1794244687278.jpg" alt="Theme 16: Bioluminescent Abyss & Acid Chartreuse">
+        <span class="mode-tag">Split Dark & Light</span>
+      </div>
+      <div class="card-body">
+        <span class="theme-num">Theme 16 • Futuristic AI</span>
+        <h2 class="theme-title">Abyss & Acid Chartreuse</h2>
+        <p class="theme-desc">Engineered for AI marketing agencies, algorithmic growth, and deep-tech SaaS with glowing oceanic viper green accents.</p>
+        <div class="dual-swatches-box">
+          <div class="swatch-row-title"><span>Dark Mode</span> <span>Base / Text / Accent</span></div>
+          <div class="swatches" style="margin-bottom:10px;">
+            <div class="swatch" style="background:#040D12; color:#fff;">#040D12</div>
+            <div class="swatch" style="background:#EBF4F6; color:#000;">#EBF4F6</div>
+            <div class="swatch" style="background:#B4F000; color:#000;">#B4F000</div>
+          </div>
+          <div class="swatch-row-title"><span>Light Mode</span> <span>Base / Text / Accent</span></div>
+          <div class="swatches">
+            <div class="swatch" style="background:#F6F9F9; color:#000;">#F6F9F9</div>
+            <div class="swatch" style="background:#0B1E28; color:#fff;">#0B1E28</div>
+            <div class="swatch" style="background:#8CB800; color:#fff;">#8CB800</div>
+          </div>
+        </div>
+        <span class="badge">AI Agencies & Algorithmic Scale</span>
+      </div>
+    </article>
+
+    <!-- Theme 17 -->
+    <article class="theme-card">
+      <div class="img-wrap">
+        <img src="theme-mockups/theme_17_monaco_grand_royal_racing_green_1794244714899.jpg" alt="Theme 17: Monaco Grand & Royal Racing Green">
+        <span class="mode-tag">Split Dark & Light</span>
+      </div>
+      <div class="card-body">
+        <span class="theme-num">Theme 17 • Supercars & Horology</span>
+        <h2 class="theme-title">Monaco & Racing Green</h2>
+        <p class="theme-desc">High-society prestige: Formula 1, luxury watch brands, automotive media, and executive clubs. Racing green and clotted cream.</p>
+        <div class="dual-swatches-box">
+          <div class="swatch-row-title"><span>Dark Mode</span> <span>Base / Text / Accent</span></div>
+          <div class="swatches" style="margin-bottom:10px;">
+            <div class="swatch" style="background:#07100D; color:#fff;">#07100D</div>
+            <div class="swatch" style="background:#FAF7F0; color:#000;">#FAF7F0</div>
+            <div class="swatch" style="background:#00E676; color:#000;">#00E676</div>
+          </div>
+          <div class="swatch-row-title"><span>Light Mode</span> <span>Base / Text / Accent</span></div>
+          <div class="swatches">
+            <div class="swatch" style="background:#F9F8F3; color:#000;">#F9F8F3</div>
+            <div class="swatch" style="background:#0A1C16; color:#fff;">#0A1C16</div>
+            <div class="swatch" style="background:#00A859; color:#fff;">#00A859</div>
+          </div>
+        </div>
+        <span class="badge">Supercars & Luxury Watches</span>
+      </div>
+    </article>
+
+    <!-- Theme 18 -->
+    <article class="theme-card">
+      <div class="img-wrap">
+        <img src="theme-mockups/theme_18_milano_espresso_tuscan_ochre_1794244747610.jpg" alt="Theme 18: Milano Espresso & Tuscan Ochre">
+        <span class="mode-tag">Split Dark & Light</span>
+      </div>
+      <div class="card-body">
+        <span class="theme-num">Theme 18 • Artisanal Luxury</span>
+        <h2 class="theme-title">Milano Espresso & Tuscan Ochre</h2>
+        <p class="theme-desc">Italian bespoke leather goods, tailoring, and artisanal coffee culture. Warm, earthy, inviting, and sophisticated.</p>
+        <div class="dual-swatches-box">
+          <div class="swatch-row-title"><span>Dark Mode</span> <span>Base / Text / Accent</span></div>
+          <div class="swatches" style="margin-bottom:10px;">
+            <div class="swatch" style="background:#110B07; color:#fff;">#110B07</div>
+            <div class="swatch" style="background:#F9F4EE; color:#000;">#F9F4EE</div>
+            <div class="swatch" style="background:#E58E26; color:#000;">#E58E26</div>
+          </div>
+          <div class="swatch-row-title"><span>Light Mode</span> <span>Base / Text / Accent</span></div>
+          <div class="swatches">
+            <div class="swatch" style="background:#FBF8F4; color:#000;">#FBF8F4</div>
+            <div class="swatch" style="background:#20140D; color:#fff;">#20140D</div>
+            <div class="swatch" style="background:#D07718; color:#fff;">#D07718</div>
+          </div>
+        </div>
+        <span class="badge">Bespoke Goods & Gastronomy</span>
+      </div>
+    </article>
+
+    <!-- Theme 19 -->
+    <article class="theme-card">
+      <div class="img-wrap">
+        <img src="theme-mockups/theme_19_cyber_sakura_electric_berry_1794244784118.jpg" alt="Theme 19: Cyber Sakura & Electric Berry">
+        <span class="mode-tag">Split Dark & Light</span>
+      </div>
+      <div class="card-body">
+        <span class="theme-num">Theme 19 • Neo-Tokyo Pop</span>
+        <h2 class="theme-title">Cyber Sakura & Electric Berry</h2>
+        <p class="theme-desc">High-voltage creator studios, viral TikTok reels, and pop-culture marketing. Intense neon berry pink cutting through midnight indigo.</p>
+        <div class="dual-swatches-box">
+          <div class="swatch-row-title"><span>Dark Mode</span> <span>Base / Text / Accent</span></div>
+          <div class="swatches" style="margin-bottom:10px;">
+            <div class="swatch" style="background:#0E0714; color:#fff;">#0E0714</div>
+            <div class="swatch" style="background:#FAF3F8; color:#000;">#FAF3F8</div>
+            <div class="swatch" style="background:#F72585; color:#fff;">#F72585</div>
+          </div>
+          <div class="swatch-row-title"><span>Light Mode</span> <span>Base / Text / Accent</span></div>
+          <div class="swatches">
+            <div class="swatch" style="background:#FDF8FB; color:#000;">#FDF8FB</div>
+            <div class="swatch" style="background:#1A0C26; color:#fff;">#1A0C26</div>
+            <div class="swatch" style="background:#D90368; color:#fff;">#D90368</div>
+          </div>
+        </div>
+        <span class="badge">Viral Creators & TikTok Pop</span>
+      </div>
+    </article>
+
+    <!-- Theme 20 -->
+    <article class="theme-card">
+      <div class="img-wrap">
+        <img src="theme-mockups/theme_20_aegean_coast_mediterranean_sunset_1794244823708.jpg" alt="Theme 20: Aegean Coast & Mediterranean Sunset">
+        <span class="mode-tag">Split Dark & Light</span>
+      </div>
+      <div class="card-body">
+        <span class="theme-num">Theme 20 • Resort Luxury</span>
+        <h2 class="theme-title">Aegean Coast & Sunset Orange</h2>
+        <p class="theme-desc">Greek islands meets Dubai marina yacht clubs. Deep Mediterranean navy contrasted with radiant sunset orange.</p>
+        <div class="dual-swatches-box">
+          <div class="swatch-row-title"><span>Dark Mode</span> <span>Base / Text / Accent</span></div>
+          <div class="swatches" style="margin-bottom:10px;">
+            <div class="swatch" style="background:#05111A; color:#fff;">#05111A</div>
+            <div class="swatch" style="background:#F0F7FA; color:#000;">#F0F7FA</div>
+            <div class="swatch" style="background:#FF6B35; color:#fff;">#FF6B35</div>
+          </div>
+          <div class="swatch-row-title"><span>Light Mode</span> <span>Base / Text / Accent</span></div>
+          <div class="swatches">
+            <div class="swatch" style="background:#F5FAFD; color:#000;">#F5FAFD</div>
+            <div class="swatch" style="background:#0B2538; color:#fff;">#0B2538</div>
+            <div class="swatch" style="background:#E8551E; color:#fff;">#E8551E</div>
+          </div>
+        </div>
+        <span class="badge">Yachting & Summer Drops</span>
+      </div>
+    </article>
+
+    <!-- Theme 21 -->
+    <article class="theme-card">
+      <div class="img-wrap">
+        <img src="theme-mockups/theme_21_stealth_titanium_vapor_blue_1794244863429.jpg" alt="Theme 21: Stealth Titanium & Vapor Blue">
+        <span class="mode-tag">Split Dark & Light</span>
+      </div>
+      <div class="card-body">
+        <span class="theme-num">Theme 21 • Aerospace Precision</span>
+        <h2 class="theme-title">Stealth Titanium & Vapor Blue</h2>
+        <p class="theme-desc">Clean, industrial, aerospace-grade precision. Matte titanium gunmetal with sky-high vapor blue highlights.</p>
+        <div class="dual-swatches-box">
+          <div class="swatch-row-title"><span>Dark Mode</span> <span>Base / Text / Accent</span></div>
+          <div class="swatches" style="margin-bottom:10px;">
+            <div class="swatch" style="background:#0D0F12; color:#fff;">#0D0F12</div>
+            <div class="swatch" style="background:#FFFFFF; color:#000;">#FFFFFF</div>
+            <div class="swatch" style="background:#64D2FF; color:#000;">#64D2FF</div>
+          </div>
+          <div class="swatch-row-title"><span>Light Mode</span> <span>Base / Text / Accent</span></div>
+          <div class="swatches">
+            <div class="swatch" style="background:#F3F5F7; color:#000;">#F3F5F7</div>
+            <div class="swatch" style="background:#12151A; color:#fff;">#12151A</div>
+            <div class="swatch" style="background:#007AFF; color:#fff;">#007AFF</div>
+          </div>
+        </div>
+        <span class="badge">Precision Tech & B2B SaaS</span>
+      </div>
+    </article>
+
+    <!-- Theme 22 -->
+    <article class="theme-card">
+      <div class="img-wrap">
+        <img src="theme-mockups/theme_22_bordeaux_royale_rose_gold_1794244907088.jpg" alt="Theme 22: Bordeaux Royale & Rose Gold">
+        <span class="mode-tag">Split Dark & Light</span>
+      </div>
+      <div class="card-body">
+        <span class="theme-num">Theme 22 • Haute Horlogerie</span>
+        <h2 class="theme-title">Bordeaux Royale & Rose Gold</h2>
+        <p class="theme-desc">Aristocratic wine cellars, private auctions, and bespoke jewelry. Velvet Bordeaux wine paired with shimmering rose gold.</p>
+        <div class="dual-swatches-box">
+          <div class="swatch-row-title"><span>Dark Mode</span> <span>Base / Text / Accent</span></div>
+          <div class="swatches" style="margin-bottom:10px;">
+            <div class="swatch" style="background:#130509; color:#fff;">#130509</div>
+            <div class="swatch" style="background:#F9F0F2; color:#000;">#F9F0F2</div>
+            <div class="swatch" style="background:#E8A598; color:#000;">#E8A598</div>
+          </div>
+          <div class="swatch-row-title"><span>Light Mode</span> <span>Base / Text / Accent</span></div>
+          <div class="swatches">
+            <div class="swatch" style="background:#FAF4F5; color:#000;">#FAF4F5</div>
+            <div class="swatch" style="background:#260712; color:#fff;">#260712</div>
+            <div class="swatch" style="background:#C87868; color:#fff;">#C87868</div>
+          </div>
+        </div>
+        <span class="badge">Private Vintage & High Jewelry</span>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- Signature Agency Themes -->
+  <div class="section-title">
+    <h2>Signature Agency Collection (Themes 1–12)</h2>
+    <div class="line"></div>
+  </div>
+
+  <main class="grid">
+
+    <!-- Theme 1 -->
+    <article class="theme-card">
+      <div class="img-wrap">
+        <img src="theme-mockups/theme1_obsidian_electric_lime_1793990184353.jpg" alt="Theme 1: Obsidian & Electric Lime">
+      </div>
+      <div class="card-body">
+        <span class="theme-num">Theme 01 • Signature</span>
+        <h2 class="theme-title">Obsidian & Electric Lime</h2>
+        <p class="theme-desc">The iconic Trifid Media modern Dubai aesthetic. High-energy electric lime accents slicing through pitch-black architecture for peak CTR.</p>
+        <div class="dual-swatches-box">
+          <div class="swatches">
+            <div class="swatch" style="background:#0A0A0A; color:#fff;">#0A0A0A</div>
+            <div class="swatch" style="background:#F4F4F6; color:#000;">#F4F4F6</div>
+            <div class="swatch" style="background:#D4FF00; color:#000; font-weight:700;">#D4FF00</div>
+          </div>
+        </div>
+        <span class="badge">1:1 Trifid Signature Look</span>
+      </div>
+    </article>
+
+    <!-- Theme 2 -->
+    <article class="theme-card">
+      <div class="img-wrap">
+        <img src="theme-mockups/theme2_dubai_noir_champagne_gold_1793990206681.jpg" alt="Theme 2: Dubai Noir & Champagne Gold">
+      </div>
+      <div class="card-body">
+        <span class="theme-num">Theme 02 • High Luxury</span>
+        <h2 class="theme-title">Dubai Noir & Champagne Gold</h2>
+        <p class="theme-desc">GCC luxury presence. Tailored for high-ticket aesthetics, fine dining, jewelry, and luxury skincare clients.</p>
+        <div class="dual-swatches-box">
+          <div class="swatches">
+            <div class="swatch" style="background:#0D0D11; color:#fff;">#0D0D11</div>
+            <div class="swatch" style="background:#F8F6F0; color:#000;">#F8F6F0</div>
+            <div class="swatch" style="background:#D4AF37; color:#000; font-weight:700;">#D4AF37</div>
+          </div>
+        </div>
+        <span class="badge">VIP Luxury & Skincare</span>
+      </div>
+    </article>
+
+    <!-- Theme 3 -->
+    <article class="theme-card">
+      <div class="img-wrap">
+        <img src="theme-mockups/theme3_graphite_electric_cyan_1793990232371.jpg" alt="Theme 3: Graphite & Electric Cyan">
+      </div>
+      <div class="card-body">
+        <span class="theme-num">Theme 03 • Tech & Video</span>
+        <h2 class="theme-title">Graphite & Electric Cyan</h2>
+        <p class="theme-desc">High-performance media dashboards and video production studios with hyper-cyan neon accents for a tech-driven authoritative edge.</p>
+        <div class="dual-swatches-box">
+          <div class="swatches">
+            <div class="swatch" style="background:#0B0F19; color:#fff;">#0B0F19</div>
+            <div class="swatch" style="background:#FFFFFF; color:#000;">#FFFFFF</div>
+            <div class="swatch" style="background:#00F0FF; color:#000; font-weight:700;">#00F0FF</div>
+          </div>
+        </div>
+        <span class="badge">Web3 & Video Reels</span>
+      </div>
+    </article>
+
+    <!-- Theme 4 -->
+    <article class="theme-card">
+      <div class="img-wrap">
+        <img src="theme-mockups/theme4_carbon_hot_sunset_coral_1793990258201.jpg" alt="Theme 4: Carbon & Hot Sunset Coral">
+      </div>
+      <div class="card-body">
+        <span class="theme-num">Theme 04 • Viral Social</span>
+        <h2 class="theme-title">Carbon & Hot Sunset Coral</h2>
+        <p class="theme-desc">Designed for viral TikTok, Instagram Reels, and influencer growth. High contrast, warm, energetic, and youth-culture driven.</p>
+        <div class="dual-swatches-box">
+          <div class="swatches">
+            <div class="swatch" style="background:#111112; color:#fff;">#111112</div>
+            <div class="swatch" style="background:#F3F3F3; color:#000;">#F3F3F3</div>
+            <div class="swatch" style="background:#FF385C; color:#fff; font-weight:700;">#FF385C</div>
+          </div>
+        </div>
+        <span class="badge">TikTok & Creator Culture</span>
+      </div>
+    </article>
+
+  </main>
+
+  <footer>
+    <p>Axoyl Digital Brand Identity System • Inspired by Trifid Media (Dubai)</p>
+  </footer>
+
+</body>
+</html>
