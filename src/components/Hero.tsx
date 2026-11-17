@@ -147,8 +147,8 @@ export default function Hero({ onOpenQuote, onOpenAudit }: HeroProps) {
           <div className="lg:col-span-5 flex flex-col items-start text-left justify-between h-full">
             <div>
               {/* Label */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#530000]/20 text-[#530000] text-xs font-bold uppercase tracking-[0.2em] mb-4 shadow-2xs">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#530000]" />
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#530000] border border-[#380000] text-white text-xs font-bold uppercase tracking-[0.2em] mb-4 shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
                 <span>Social Media Agency · Marketing · PR</span>
               </div>
 
