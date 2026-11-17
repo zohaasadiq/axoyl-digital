@@ -495,62 +495,78 @@ export default function Hero({ onOpenQuote, onOpenAudit }: HeroProps) {
                   </div>
                 </div>
               ) : (
-                /* View 2: Live Instagram Feed Phone Mockup */
-                <div className="p-6 bg-white flex items-center justify-center flex-1">
-                  <div className="relative w-full max-w-[340px] rounded-[36px] p-3 bg-[#140202] shadow-[0_15px_40px_rgba(0,0,0,0.18)] border-4 border-[#3D0303]/60">
-                    <div className="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-3.5 bg-black rounded-full z-20" />
+                /* View 2: Live Instagram Feed Phone Mockup (Fills Container, Zero White Space) */
+                <div className="relative p-4 sm:p-6 bg-[#140202] flex items-center justify-center flex-1 overflow-hidden">
+                  {/* Ambient studio glow */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-[#1E0404] via-[#140202] to-[#100101]" />
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-[#530000]/35 rounded-full blur-[80px] pointer-events-none" />
 
-                    <div className="relative rounded-[28px] overflow-hidden bg-white text-[#140202] pt-5 pb-3">
-                      <div className="px-4 py-1.5 border-b border-[#FAF6F0] flex items-center justify-between">
+                  {/* Phone Device Mockup - Scaled to Fit Container */}
+                  <div className="relative z-10 w-full max-w-[390px] sm:max-w-[420px] rounded-[38px] p-3.5 bg-[#1C0505] shadow-[0_20px_60px_rgba(0,0,0,0.6)] border-4 border-[#530000]/60">
+                    {/* Notch / Dynamic Island */}
+                    <div className="absolute top-4 left-1/2 -translate-x-1/2 w-24 h-4 bg-black rounded-full z-20" />
+
+                    {/* Phone Screen Area */}
+                    <div className="relative rounded-[28px] overflow-hidden bg-white text-[#140202] pt-6 pb-3.5">
+                      {/* Instagram Top Bar */}
+                      <div className="px-4 py-2 border-b border-[#FAF6F0] flex items-center justify-between">
                         <div className="flex items-center gap-1.5 font-bold text-xs">
                           <span>axoyl.digital</span>
                           <span className="w-1.5 h-1.5 rounded-full bg-[#530000]" />
                         </div>
-                        <InstagramIcon className="w-3.5 h-3.5 text-[#530000]" />
+                        <InstagramIcon className="w-4 h-4 text-[#530000]" />
                       </div>
 
-                      <div className="p-3 flex items-center gap-3">
-                        <div className="relative w-11 h-11 rounded-full p-0.5 bg-gradient-to-tr from-[#530000] via-[#851E1E] to-[#D7C3B1]">
+                      {/* Profile Header & Stats */}
+                      <div className="p-3.5 flex items-center gap-3.5">
+                        <div className="relative w-12 h-12 rounded-full p-0.5 bg-gradient-to-tr from-[#530000] via-[#851E1E] to-[#D7C3B1] shrink-0">
                           <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden">
                             <Image
                               src="/team/esha-founder.jpeg"
                               alt="Esha"
-                              width={40}
-                              height={40}
+                              width={44}
+                              height={44}
                               className="object-cover w-full h-full"
                             />
                           </div>
                         </div>
                         <div className="flex-1 flex justify-around text-center">
                           <div>
-                            <div className="text-xs font-bold">37+</div>
-                            <div className="text-[9px] text-[#5A4842]">Brands</div>
+                            <div className="text-sm font-bold text-[#140202]">37+</div>
+                            <div className="text-[10px] text-[#5A4842] font-medium">Brands</div>
                           </div>
                           <div>
-                            <div className="text-xs font-bold">400K+</div>
-                            <div className="text-[9px] text-[#5A4842]">Top Reels</div>
+                            <div className="text-sm font-bold text-[#140202]">400K+</div>
+                            <div className="text-[10px] text-[#5A4842] font-medium">Top Reels</div>
                           </div>
                           <div>
-                            <div className="text-xs font-bold">6</div>
-                            <div className="text-[9px] text-[#5A4842]">Countries</div>
+                            <div className="text-sm font-bold text-[#140202]">6</div>
+                            <div className="text-[10px] text-[#5A4842] font-medium">Countries</div>
                           </div>
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-3 gap-1 px-1.5 pt-1">
+                      {/* Bio snippet */}
+                      <div className="px-3.5 pb-2.5 text-[11px] leading-tight text-[#3D261E]">
+                        <span className="font-bold">Axoyl Digital · Social Media Agency</span>
+                        <p className="text-[#5A4842] text-[10px] mt-0.5">Strategy · Viral Reels · Content · PR</p>
+                      </div>
+
+                      {/* 6 Reels Grid */}
+                      <div className="grid grid-cols-3 gap-1.5 px-2 pt-1">
                         {DUMMY_FEED_POSTS.map((post) => (
                           <div
                             key={post.id}
-                            className={`relative aspect-square rounded-md overflow-hidden bg-gradient-to-br ${post.bg} flex flex-col justify-between p-1.5 text-white group`}
+                            className={`relative aspect-square rounded-lg overflow-hidden bg-gradient-to-br ${post.bg} flex flex-col justify-between p-2 text-white group hover:scale-[1.03] transition-transform duration-200 shadow-xs`}
                           >
-                            <div className="flex justify-between items-start text-[8px]">
+                            <div className="flex justify-between items-start text-[9px]">
                               {post.isReel ? (
-                                <Play className="w-2.5 h-2.5 fill-white" />
+                                <Play className="w-3 h-3 fill-white" />
                               ) : (
-                                <span className="font-semibold">{post.tag}</span>
+                                <span className="font-bold text-[8px] uppercase tracking-wider">{post.tag}</span>
                               )}
                             </div>
-                            <div className="text-[8px] font-bold tracking-tight line-clamp-1">
+                            <div className="text-[9px] font-bold tracking-tight line-clamp-1">
                               {post.views}
                             </div>
                           </div>
