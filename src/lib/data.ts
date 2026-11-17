@@ -331,22 +331,30 @@ export const EXACT_TEAM: TeamMember[] = [
 // Page 23: Contact
 export const EXACT_CONTACT = {
   callout: "FEEL FREE TO REACH OUT IF YOU HAVE ANY QUERIES",
-  company: "AxoylDigital",
-  agencySubtitle: "Axoyl Marketing and PR Agency",
-  instagram: "axoyldigital",
+  company: "Axoyl Digital",
+  agencySubtitle: "Social Media Agency · Marketing · PR",
+  instagram: "axoyl.digital",
+  instagramPk: "axoyldigital.pk",
+  linkedin: "axoyldigital",
   phone: "+92 349 2976505",
-  email: "axoyldigital@gmail.com",
+  whatsappNumber: "923492976505",
+  email: "hello@axoyldigital.com",
+  founderEmail: "esha@axoyldigital.com",
 };
 
 export const AGENCY_INFO = {
   name: "Axoyl Digital",
   shortName: "Axoyl",
-  fullName: "AxoylDigital Marketing and PR Agency",
-  tagline: "Unmatched Marketing Solutions at Axoyl Digital",
+  fullName: "Axoyl Digital Social Media Agency & Marketing PR",
+  tagline: "Social media that builds brands people buy from.",
   phone: "+92 349 2976505",
-  email: "axoyldigital@gmail.com",
-  instagram: "axoyldigital",
-  locations: ["Pakistan", "United States", "United Arab Emirates"],
+  whatsappNumber: "923492976505",
+  email: "hello@axoyldigital.com",
+  founderEmail: "esha@axoyldigital.com",
+  instagram: "axoyl.digital",
+  instagramPk: "axoyldigital.pk",
+  linkedin: "axoyldigital",
+  locations: ["Pakistan", "United Arab Emirates", "United Kingdom", "United States", "Ireland", "Australia"],
 };
 
 export const FAQS = [

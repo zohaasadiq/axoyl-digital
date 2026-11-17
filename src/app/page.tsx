@@ -3,73 +3,79 @@
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import TrifidAboutSection from "@/components/TrifidAboutSection";
-import TrifidWorkSection from "@/components/TrifidWorkSection";
-import TrifidServicesSection from "@/components/TrifidServicesSection";
-import TrifidResultsSection from "@/components/TrifidResultsSection";
-import ClientShowcase from "@/components/ClientShowcase";
-import TrifidOperateSection from "@/components/TrifidOperateSection";
-import TrifidDifferenceSection from "@/components/TrifidDifferenceSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import TrifidCultureFeedSection from "@/components/TrifidCultureFeedSection";
-import TrifidCtaSection from "@/components/TrifidCtaSection";
+import NumbersStrip from "@/components/NumbersStrip";
+import ClientLogosSection from "@/components/ClientLogosSection";
+import HomeServicesSection from "@/components/HomeServicesSection";
+import FounderCallSection from "@/components/FounderCallSection";
+import SelectedWorkSection from "@/components/SelectedWorkSection";
+import FinalCtaSection from "@/components/FinalCtaSection";
 import Footer from "@/components/Footer";
-import AuditModal from "@/components/AuditModal";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import CookieBanner from "@/components/CookieBanner";
+import QuoteModal from "@/components/QuoteModal";
 
 export default function Home() {
-  const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+  const [modalService, setModalService] = useState<string | undefined>(undefined);
+  const [modalMode, setModalMode] = useState<"quote" | "audit">("quote");
 
-  const handleOpenAudit = () => {
-    setIsAuditModalOpen(true);
+  const handleOpenQuote = (service?: string) => {
+    setModalMode("quote");
+    setModalService(service || "Social media management");
+    setIsQuoteModalOpen(true);
   };
 
-  const handleCloseAudit = () => {
-    setIsAuditModalOpen(false);
+  const handleOpenAudit = () => {
+    setModalMode("audit");
+    setIsQuoteModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsQuoteModalOpen(false);
   };
 
   return (
     <main className="min-h-screen bg-[#FAF6F0] text-[#140202] selection:bg-[#520000] selection:text-white">
-      {/* 01. Floating Capsule Navbar (Trifid Style) */}
-      <Navbar onOpenAudit={handleOpenAudit} />
+      {/* 00. Global Navigation: Home · Work · Services · Plans · About · Contact + Book a call */}
+      <Navbar onOpenQuote={handleOpenQuote} onOpenAudit={handleOpenAudit} />
 
-      {/* 02. Hero Section with Floating Bottom-Right Brief Card (Trifid Style) */}
-      <Hero onOpenAudit={handleOpenAudit} />
+      {/* 01. Section 1: Hero (Weproms Style: Geographically Accurate World Map from Pakistan, Headline, 1a Hero Bar) */}
+      <Hero onOpenQuote={handleOpenQuote} onOpenAudit={handleOpenAudit} />
 
-      {/* 03. "Who We Are" — THE SMM & CULTURE AGENCY. + 4 Metric Blocks */}
-      <TrifidAboutSection />
+      {/* 02. Section 2: Numbers Strip (37+ brands · 6 countries · 400K+ views · Since 2019) */}
+      <NumbersStrip />
 
-      {/* 04. "Our Work" — Work that moves culture. + Founder Banner */}
-      <TrifidWorkSection onOpenAudit={handleOpenAudit} />
+      {/* 03. Section 3: Client Logos (Trusted by brands across 6 countries + Single-color logos + Unnamed text tiles) */}
+      <ClientLogosSection />
 
-      {/* 05. "What We Do" — EVERYTHING YOU NEED. NOTHING YOU DON'T. (3-Col Grid) */}
-      <TrifidServicesSection onOpenAudit={handleOpenAudit} />
+      {/* 04. Section 4: Services (What we do: 1 Large card + 6 small cards) */}
+      <HomeServicesSection onOpenQuote={handleOpenQuote} />
 
-      {/* 06. "Real Clients. Real Results." — Phone Mockup Reel Proof & Reviews */}
-      <TrifidResultsSection />
+      {/* 05. Section 5: Book a call with Esha (Signature founder banner) */}
+      <FounderCallSection onOpenBooking={() => handleOpenQuote("20-minute call")} />
 
-      {/* 07. "Brands Collaborations" — Dual Infinite Logo Marquee (Page 19) */}
-      <ClientShowcase />
+      {/* 06. Section 6: Selected work + testimonials (4 project cards + 3 real client quotes + Portfolio by email) */}
+      <SelectedWorkSection />
 
-      {/* 08. "Where We Operate" — Built with Passion. Operating Everywhere. (PK · USA · UAE) */}
-      <TrifidOperateSection />
+      {/* 07. Section 7: Final CTA (Ready to grow your brand on social?) */}
+      <FinalCtaSection onOpenQuote={() => handleOpenQuote()} />
 
-      {/* 09. "Why Choose Us" — THE DIFFERENCE IS IN HOW WE'RE BUILT. */}
-      <TrifidDifferenceSection onOpenAudit={handleOpenAudit} />
-
-      {/* 10. "Client Stories" — DON'T TAKE OUR WORD FOR IT. (Split Screen) */}
-      <TestimonialsSection />
-
-      {/* 11. "Follow the Culture" — 15M+ Views & Reel Showcase */}
-      <TrifidCultureFeedSection />
-
-      {/* 12. "Start Something Real" — Bottom Stage CTA */}
-      <TrifidCtaSection onOpenAudit={handleOpenAudit} />
-
-      {/* 13. Deep Maroon Footer */}
+      {/* Global Footer (Newsletter + Pages + Socials) */}
       <Footer />
 
-      {/* 14. Interactive Audit Modal */}
-      <AuditModal isOpen={isAuditModalOpen} onClose={handleCloseAudit} />
+      {/* On Every Page: Floating WhatsApp button "Chat with Esha" */}
+      <FloatingWhatsApp />
+
+      {/* On Every Page: Cookie Banner on first visit */}
+      <CookieBanner />
+
+      {/* Unified Quote & Free Social Media Audit Modal */}
+      <QuoteModal
+        isOpen={isQuoteModalOpen}
+        onClose={handleCloseModal}
+        initialService={modalService}
+        initialMode={modalMode}
+      />
     </main>
   );
 }
