@@ -121,7 +121,6 @@ const DUMMY_FEED_POSTS = [
 export default function Hero({ onOpenQuote, onOpenAudit }: HeroProps) {
   const [auditHandle, setAuditHandle] = useState("");
   const [rightView, setRightView] = useState<"map" | "feed">("map");
-  const [activeDestination, setActiveDestination] = useState<string | null>(null);
 
   const handleAuditSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -298,7 +297,6 @@ export default function Hero({ onOpenQuote, onOpenAudit }: HeroProps) {
 
                     {/* Flight Arcs */}
                     {DESTINATIONS.map((dest) => {
-                      const isHovered = activeDestination === dest.id;
                       const pathData = `M ${LAHORE.pinX} ${LAHORE.pinY} Q ${dest.controlX} ${dest.controlY} ${dest.pinX} ${dest.pinY}`;
 
                       return (
@@ -307,18 +305,17 @@ export default function Hero({ onOpenQuote, onOpenAudit }: HeroProps) {
                             d={pathData}
                             fill="none"
                             stroke="#330000"
-                            strokeWidth={isHovered ? "4" : "2.5"}
+                            strokeWidth="2.5"
                             strokeOpacity="0.6"
                             strokeLinecap="round"
                           />
                           <path
                             d={pathData}
                             fill="none"
-                            stroke={isHovered ? "url(#heroFlightArcActive)" : "url(#heroFlightArc)"}
-                            strokeWidth={isHovered ? "3" : "1.8"}
+                            stroke="url(#heroFlightArc)"
+                            strokeWidth="1.8"
                             strokeDasharray="6 6"
                             strokeLinecap="round"
-                            filter={isHovered ? "url(#heroArcGlow)" : undefined}
                             style={{ animation: "heroDash 22s linear infinite" }}
                           />
                         </g>
@@ -352,34 +349,25 @@ export default function Hero({ onOpenQuote, onOpenAudit }: HeroProps) {
                     />
 
                     {/* Destination Pinpoints */}
-                    {DESTINATIONS.map((dest) => {
-                      const isHovered = activeDestination === dest.id;
-                      return (
-                        <g
-                          key={`hero-pin-${dest.id}`}
-                          className="cursor-pointer"
-                          onMouseEnter={() => setActiveDestination(dest.id)}
-                          onMouseLeave={() => setActiveDestination(null)}
-                        >
-                          <circle
-                            cx={dest.pinX}
-                            cy={dest.pinY}
-                            r={isHovered ? "13" : "7"}
-                            fill="#FFFFFF"
-                            fillOpacity={isHovered ? "0.4" : "0.2"}
-                            className={isHovered ? "animate-ping" : ""}
-                          />
-                          <circle
-                            cx={dest.pinX}
-                            cy={dest.pinY}
-                            r={isHovered ? "5.5" : "4.5"}
-                            fill="#530000"
-                            stroke="#FFFFFF"
-                            strokeWidth="2"
-                          />
-                        </g>
-                      );
-                    })}
+                    {DESTINATIONS.map((dest) => (
+                      <g key={`hero-pin-${dest.id}`}>
+                        <circle
+                          cx={dest.pinX}
+                          cy={dest.pinY}
+                          r="7"
+                          fill="#FFFFFF"
+                          fillOpacity="0.2"
+                        />
+                        <circle
+                          cx={dest.pinX}
+                          cy={dest.pinY}
+                          r="4.5"
+                          fill="#530000"
+                          stroke="#FFFFFF"
+                          strokeWidth="2"
+                        />
+                      </g>
+                    ))}
 
                     {/* Origin: Lahore Pinpoint */}
                     <g>
@@ -390,17 +378,13 @@ export default function Hero({ onOpenQuote, onOpenAudit }: HeroProps) {
 
                     {/* Non-overlapping Destination Badges */}
                     {DESTINATIONS.map((dest) => {
-                      const isHovered = activeDestination === dest.id;
                       const rx = dest.badgeX - dest.badgeW / 2;
                       const ry = dest.badgeY - dest.badgeH / 2;
 
                       return (
                         <g
                           key={`hero-badge-${dest.id}`}
-                          className="cursor-pointer transition-transform duration-200"
                           filter="url(#heroBadgeShadow)"
-                          onMouseEnter={() => setActiveDestination(dest.id)}
-                          onMouseLeave={() => setActiveDestination(null)}
                         >
                           <rect
                             x={rx}
@@ -408,15 +392,15 @@ export default function Hero({ onOpenQuote, onOpenAudit }: HeroProps) {
                             width={dest.badgeW}
                             height={dest.badgeH}
                             rx={dest.badgeH / 2}
-                            fill={isHovered ? "#380000" : "#FFFFFF"}
-                            stroke={isHovered ? "#FFFFFF" : "#530000"}
-                            strokeWidth={isHovered ? "1.8" : "1"}
+                            fill="#FFFFFF"
+                            stroke="#530000"
+                            strokeWidth="1"
                           />
                           <text
                             x={dest.badgeX}
                             y={dest.badgeY + 4}
                             textAnchor="middle"
-                            fill={isHovered ? "#FFFFFF" : "#530000"}
+                            fill="#530000"
                             fontSize="11"
                             fontWeight="bold"
                             fontFamily="system-ui, sans-serif"
@@ -454,44 +438,17 @@ export default function Hero({ onOpenQuote, onOpenAudit }: HeroProps) {
                     </g>
                   </svg>
 
-                  {/* Active Tooltip Strip on Map */}
-                  {activeDestination && (
-                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 px-3.5 py-1 rounded-full bg-[#260000]/95 backdrop-blur-md text-white border border-white/20 shadow-lg flex items-center gap-2 text-[11px] font-medium pointer-events-none">
-                      <span className="w-1.5 h-1.5 rounded-full bg-white" />
-                      <span>
-                        Route: <strong>Lahore (HQ)</strong> →{" "}
-                        <strong>
-                          {DESTINATIONS.find((d) => d.id === activeDestination)?.flag}{" "}
-                          {DESTINATIONS.find((d) => d.id === activeDestination)?.city}
-                        </strong>
+                  {/* Country Names Strip at the bottom of the map */}
+                  <div className="p-3 bg-[#420000] border-t border-[#FAF6F0]/15 flex items-center justify-center gap-2 sm:gap-2.5 flex-wrap">
+                    {DESTINATIONS.map((d) => (
+                      <span
+                        key={d.id}
+                        className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#280000] text-white border border-[#FAF6F0]/15 shadow-2xs inline-flex items-center gap-1.5"
+                      >
+                        <span>{d.flag}</span>
+                        <span>{d.country}</span>
                       </span>
-                      <span className="text-white/40">|</span>
-                      <span className="text-[#D7C3B1]">
-                        {DESTINATIONS.find((d) => d.id === activeDestination)?.highlight}
-                      </span>
-                    </div>
-                  )}
-
-                  {/* Quick Pill Controls at the bottom of the map */}
-                  <div className="p-3 bg-[#420000] border-t border-[#FAF6F0]/15 flex items-center justify-between text-xs text-[#FAF6F0]/80">
-                    <span className="font-semibold text-[11px] uppercase tracking-wider text-[#D7C3B1]">
-                      Click destination to highlight route:
-                    </span>
-                    <div className="flex items-center gap-1.5 overflow-x-auto">
-                      {DESTINATIONS.map((d) => (
-                        <button
-                          key={d.id}
-                          onClick={() => setActiveDestination(activeDestination === d.id ? null : d.id)}
-                          className={`px-2 py-0.5 rounded-full text-[10px] font-bold transition-all ${
-                            activeDestination === d.id
-                              ? "bg-white text-[#530000]"
-                              : "bg-[#280000] text-white hover:bg-white/10"
-                          }`}
-                        >
-                          {d.flag} {d.country}
-                        </button>
-                      ))}
-                    </div>
+                    ))}
                   </div>
                 </div>
               ) : (
