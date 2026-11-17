@@ -172,16 +172,21 @@ export default function SelectedWorkSection() {
             {TESTIMONIALS.map((t, idx) => (
               <div
                 key={idx}
-                className="rounded-2xl bg-white border border-[#D7C3B1] p-6 sm:p-7 flex flex-col justify-between shadow-xs hover:border-[#520000]/60 transition-all"
+                className="rounded-2xl bg-[#520000] text-white border border-[#D7C3B1]/25 p-6 sm:p-7 flex flex-col justify-between hover:border-[#D7C3B1]/70 hover:-translate-y-1.5 hover:shadow-2xl transition-all duration-300 relative overflow-hidden group shadow-lg"
               >
-                <p className="text-sm text-[#3D261E] italic leading-relaxed mb-6">
-                  “{t.quote}”
-                </p>
-                <div className="pt-4 border-t border-[#D7C3B1]/60">
-                  <p className="text-xs font-bold text-[#140202]">{t.author}</p>
-                  <p className="text-[11px] text-[#520000] font-semibold">
-                    {t.role}, {t.brand}
+                {/* Subtle luxury light sheen */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+
+                <div className="relative z-10 flex flex-col justify-between h-full">
+                  <p className="text-sm text-white/95 italic leading-relaxed mb-6 font-serif">
+                    “{t.quote}”
                   </p>
+                  <div className="pt-4 border-t border-[#D7C3B1]/30">
+                    <p className="text-xs font-bold text-white">{t.author}</p>
+                    <p className="text-[11px] text-[#D7C3B1] font-semibold">
+                      {t.role}, {t.brand}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
