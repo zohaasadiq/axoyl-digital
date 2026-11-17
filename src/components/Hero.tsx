@@ -452,14 +452,19 @@ export default function Hero({ onOpenQuote, onOpenAudit }: HeroProps) {
                   </div>
                 </div>
               ) : (
-                /* View 2: Live Instagram Feed Phone Mockup (Fills Container, Zero White Space) */
-                <div className="relative p-4 sm:p-6 bg-[#140202] flex items-center justify-center flex-1 overflow-hidden">
-                  {/* Ambient studio glow */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-[#1E0404] via-[#140202] to-[#100101]" />
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-[#530000]/35 rounded-full blur-[80px] pointer-events-none" />
+                /* View 2: Live Instagram Feed Phone Mockup */
+                <div className="relative p-4 sm:p-6 bg-[#530000] flex items-center justify-center flex-1 overflow-hidden">
+                  {/* Subtle luxury pattern */}
+                  <div
+                    className="absolute inset-0 opacity-[0.04] pointer-events-none"
+                    style={{
+                      backgroundImage: `linear-gradient(#FAF6F0 1px, transparent 1px), linear-gradient(90deg, #FAF6F0 1px, transparent 1px)`,
+                      backgroundSize: "40px 40px",
+                    }}
+                  />
 
                   {/* Phone Device Mockup - Scaled to Fit Container */}
-                  <div className="relative z-10 w-full max-w-[390px] sm:max-w-[420px] rounded-[38px] p-3.5 bg-[#1C0505] shadow-[0_20px_60px_rgba(0,0,0,0.6)] border-4 border-[#530000]/60">
+                  <div className="relative z-10 w-full max-w-[390px] sm:max-w-[420px] rounded-[38px] p-3.5 bg-[#250000] shadow-[0_25px_60px_rgba(0,0,0,0.5)] border-4 border-[#3A0000]">
                     {/* Notch / Dynamic Island */}
                     <div className="absolute top-4 left-1/2 -translate-x-1/2 w-24 h-4 bg-black rounded-full z-20" />
 
