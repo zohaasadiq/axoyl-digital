@@ -65,7 +65,7 @@ export default function PlansPage() {
     <main className="min-h-screen bg-[#FAF6F0] text-[#140202]">
       <Navbar onOpenQuote={handleOpenQuote} />
 
-      <section className="pt-32 sm:pt-40 pb-20 sm:pb-28">
+      <section className="pt-44 sm:pt-48 pb-20 sm:pb-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto mb-16">

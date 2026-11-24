@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { X, Sparkles, Send, CheckCircle2, MessageCircle, Mail, Loader2, ArrowRight } from "lucide-react";
+import { X, Sparkles, Send, CheckCircle2, MessageCircle, Mail, Loader2, ArrowRight, Clock, AlertCircle } from "lucide-react";
 import { EXACT_CONTACT } from "@/lib/data";
 
 export interface QuoteModalProps {
@@ -51,6 +51,39 @@ export default function QuoteModal({
   const [submitted, setSubmitted] = useState(false);
   const [submissionId, setSubmissionId] = useState("");
 
+  // Rate-limiting / Cooldown states
+  const [alreadyPlaced, setAlreadyPlaced] = useState(false);
+  const [cooldownRemainingHours, setCooldownRemainingHours] = useState<number | null>(null);
+  const [existingBrand, setExistingBrand] = useState("");
+  const [existingRefId, setExistingRefId] = useState("");
+
+  const checkCooldown = (currentMode: "quote" | "audit") => {
+    try {
+      const storageKey = currentMode === "audit" ? "axoyl_active_audit" : "axoyl_active_quote";
+      const saved = localStorage.getItem(storageKey);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        const cooldownHours = currentMode === "audit" ? 48 : 24;
+        const cooldownMs = cooldownHours * 60 * 60 * 1000;
+        const elapsed = Date.now() - Number(parsed.timestamp);
+        if (elapsed < cooldownMs) {
+          const remaining = Math.max(1, Math.ceil((cooldownMs - elapsed) / (1000 * 60 * 60)));
+          setAlreadyPlaced(true);
+          setCooldownRemainingHours(remaining);
+          setExistingBrand(parsed.brand || "");
+          setExistingRefId(parsed.id || "");
+          return true;
+        } else {
+          localStorage.removeItem(storageKey);
+        }
+      }
+    } catch {
+      // ignore
+    }
+    setAlreadyPlaced(false);
+    return false;
+  };
+
   useEffect(() => {
     if (initialService) {
       setSelectedServices((prev) =>
@@ -61,6 +94,12 @@ export default function QuoteModal({
       setMode(initialMode);
     }
   }, [initialService, initialMode, isOpen]);
+
+  useEffect(() => {
+    if (isOpen) {
+      checkCooldown(mode);
+    }
+  }, [isOpen, mode]);
 
   if (!isOpen) return null;
 
@@ -94,14 +133,48 @@ export default function QuoteModal({
       });
 
       const data = await res.json();
+
+      if (data.alreadySubmitted) {
+        setAlreadyPlaced(true);
+        setCooldownRemainingHours(data.remainingHours || (mode === "audit" ? 48 : 24));
+        setExistingBrand(data.lead?.brandName || brand || "");
+        setExistingRefId(data.lead?.id || "");
+        try {
+          const storageKey = mode === "audit" ? "axoyl_active_audit" : "axoyl_active_quote";
+          localStorage.setItem(
+            storageKey,
+            JSON.stringify({
+              timestamp: new Date(data.lead?.timestamp || Date.now()).getTime(),
+              id: data.lead?.id,
+              brand: data.lead?.brandName || brand,
+              email: email.trim().toLowerCase(),
+            })
+          );
+        } catch {}
+        return;
+      }
+
       if (data.success && data.lead) {
         setSubmissionId(data.lead.id);
+        setSubmitted(true);
+        try {
+          const storageKey = mode === "audit" ? "axoyl_active_audit" : "axoyl_active_quote";
+          localStorage.setItem(
+            storageKey,
+            JSON.stringify({
+              timestamp: Date.now(),
+              id: data.lead.id,
+              brand: brand.trim(),
+              email: email.trim().toLowerCase(),
+            })
+          );
+        } catch {}
       }
     } catch (err) {
       console.error("Submission failed:", err);
+      setSubmitted(true);
     } finally {
       setIsSubmitting(false);
-      setSubmitted(true);
     }
   };
 
@@ -126,7 +199,95 @@ export default function QuoteModal({
           <X className="w-4 h-4" />
         </button>
 
-        {!submitted ? (
+        {alreadyPlaced ? (
+          <div>
+            {/* Mode Switcher */}
+            <div className="inline-flex p-1 rounded-full bg-[#FAF6F0] border border-[#D7C3B1] mb-5">
+              <button
+                type="button"
+                onClick={() => {
+                  setMode("quote");
+                  checkCooldown("quote");
+                }}
+                className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
+                  mode === "quote"
+                    ? "bg-[#520000] text-white shadow-sm"
+                    : "text-[#5A4842] hover:text-[#140202]"
+                }`}
+              >
+                Get a Quote
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setMode("audit");
+                  checkCooldown("audit");
+                }}
+                className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
+                  mode === "audit"
+                    ? "bg-[#520000] text-white shadow-sm"
+                    : "text-[#5A4842] hover:text-[#140202]"
+                }`}
+              >
+                Free Audit (48h)
+              </button>
+            </div>
+
+            <div className="text-center py-6 space-y-4">
+              <div className="w-14 h-14 rounded-full bg-amber-50 border border-amber-500/40 flex items-center justify-center mx-auto text-amber-600 shadow-sm">
+                <Clock className="w-7 h-7" />
+              </div>
+
+              <div>
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100/80 text-amber-900 text-[11px] font-bold uppercase tracking-wider mb-2">
+                  <Sparkles className="w-3 h-3 text-amber-700" />
+                  <span>Request In Progress</span>
+                </div>
+                <h3 className="text-2xl font-serif font-bold text-[#140202]">
+                  You have already placed a request.
+                </h3>
+                <p className="text-xs text-[#5A4842] mt-2 max-w-sm mx-auto leading-relaxed">
+                  We already received your {mode === "audit" ? "Free Social Media Audit" : "Quote"} request {existingBrand ? `for "${existingBrand}"` : ""} and our team is actively reviewing your brand.
+                </p>
+                {existingRefId && (
+                  <p className="text-[11px] text-[#520000] font-bold uppercase tracking-wider mt-2">
+                    Reference: {existingRefId}
+                  </p>
+                )}
+              </div>
+
+              {/* SLA Notice Box */}
+              <div className="max-w-sm mx-auto p-4 rounded-2xl bg-[#FAF6F0] border border-[#D7C3B1] text-xs text-[#3D261E] space-y-1.5 text-left">
+                <div className="flex items-center justify-between font-semibold">
+                  <span>Guaranteed SLA Turnaround:</span>
+                  <span className="text-[#520000] font-bold">{mode === "audit" ? "48 Hours" : "24 Hours"}</span>
+                </div>
+                <p className="text-[11px] text-[#5A4842] leading-relaxed">
+                  To maintain the quality of our audits and strategy proposals, you can place another request once the specified review period is completed
+                  {cooldownRemainingHours ? ` (~${cooldownRemainingHours}h remaining).` : "."}
+                </p>
+              </div>
+
+              <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+                <button
+                  type="button"
+                  onClick={handleWhatsAppRedirect}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider bg-[#25D366] text-white hover:bg-[#20ba59] transition-all shadow-sm"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  <span>Ask For Update on WhatsApp</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider bg-white text-[#140202] border border-[#D7C3B1] hover:bg-[#FAF6F0] transition-all"
+                >
+                  Done
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : !submitted ? (
           <div>
             {/* Mode Switcher */}
             <div className="inline-flex p-1 rounded-full bg-[#FAF6F0] border border-[#D7C3B1] mb-5">

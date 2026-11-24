@@ -43,6 +43,7 @@
 /* Custom refined scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
   background: #F4ECE3;
@@ -53,6 +54,17 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #520000;
+}
+
+/* Utility to completely hide scrollbars where needed */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+  width: 0px;
+  height: 0px;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* Editorial Glass & Card utility treatments */

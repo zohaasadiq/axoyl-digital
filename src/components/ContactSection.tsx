@@ -68,7 +68,7 @@ export default function ContactSection({ onOpenAudit }: ContactSectionProps) {
             {/* Direct Contact Links */}
             <div className="space-y-4 mb-8">
               <a
-                href={`https://wa.me/923492976505?text=Hi%20Axoyl%20Digital,%20I'd%20like%20to%20discuss%20services%20for%20my%20brand.`}
+                href={`https://wa.me/${EXACT_CONTACT.whatsappNumber}?text=Hi%20Axoyl%20Digital,%20I'd%20like%20to%20discuss%20services%20for%20my%20brand.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 p-5 rounded-2xl bg-white border border-[#D7C3B1] hover:border-[#520000] transition-all group shadow-sm hover:shadow-md"

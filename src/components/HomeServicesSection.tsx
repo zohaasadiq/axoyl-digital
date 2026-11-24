@@ -8,42 +8,42 @@ interface HomeServicesProps {
   onOpenQuote: (service?: string) => void;
 }
 
-// 6 Secondary Services
+// 6 Complementary Core Services from Client Document
 const SECONDARY_SERVICES = [
   {
     num: "01",
-    title: "Content & reels",
-    desc: "Hook-driven short-form reels, high-engagement carousels and editorial graphic design.",
+    title: "Branding & Designing",
+    desc: "Visual identity, brand guidelines, typography, and cohesive aesthetic systems that make your business unmistakable.",
     href: "/services",
   },
   {
     num: "02",
-    title: "Paid ads",
-    desc: "Targeted Meta & Google ad campaigns engineered for ROAS, low acquisition costs, and qualified conversions.",
+    title: "Video Editing",
+    desc: "High-retention short-form reels, TikToks, and YouTube cuts engineered to hold attention and convert viewers into followers.",
     href: "/services",
   },
   {
     num: "03",
-    title: "Branding",
-    desc: "Visual identity, color systems, typography and brand guidelines that set you apart.",
+    title: "Paid Ads",
+    desc: "Targeted Meta & Google ad campaigns engineered for ROAS, low acquisition costs, and qualified inbound inquiries.",
     href: "/services",
   },
   {
     num: "04",
-    title: "Personal branding",
-    desc: "Turn founder profiles into high-trust authority media channels on LinkedIn and Instagram.",
+    title: "PR & Influencer Marketing",
+    desc: "Vetted creator collaborations, product gifting, and press outreach that establish immediate market trust.",
     href: "/services",
   },
   {
     num: "05",
-    title: "PR & Influencer Partnerships",
-    desc: "Tier-1 creator activations, product seedings, and press mentions that move consumer behavior.",
+    title: "Personal Branding",
+    desc: "Turn founder and executive profiles into high-trust authority media channels on LinkedIn and Instagram.",
     href: "/services",
   },
   {
     num: "06",
-    title: "Email marketing",
-    desc: "Lifecycle welcome flows, cart recovery, and weekly newsletters that maximize lifetime customer value.",
+    title: "Email Marketing",
+    desc: "Lifecycle welcome flows, promotional campaigns, and weekly newsletters that maximize client lifetime value.",
     href: "/services",
   },
 ];

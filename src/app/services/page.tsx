@@ -156,7 +156,7 @@ export default function ServicesPage() {
       <Navbar onOpenAudit={() => setIsAuditModalOpen(true)} />
 
       {/* Hero Banner */}
-      <section className="relative pt-36 pb-20 overflow-hidden border-b border-[#D7C3B1]/60 bg-[#FAF6F0]">
+      <section className="relative pt-44 sm:pt-48 pb-20 overflow-hidden border-b border-[#D7C3B1]/60 bg-[#FAF6F0]">
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-[#D7C3B1]/30 rounded-full blur-[140px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">

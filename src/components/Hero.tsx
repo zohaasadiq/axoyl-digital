@@ -13,13 +13,13 @@ interface HeroProps {
 }
 
 const HERO_BAR_CHIPS = [
-  "Social media management",
-  "Content & reels",
-  "Paid ads",
-  "Branding",
-  "Personal branding",
-  "PR",
-  "Email marketing",
+  "Social Media Management",
+  "Branding & Designing",
+  "Video Editing",
+  "Paid Ads",
+  "PR & Influencer Marketing",
+  "Personal Branding",
+  "Email Marketing",
 ];
 
 const DESTINATIONS = [
@@ -182,31 +182,39 @@ export default function Hero({ onOpenQuote, onOpenAudit }: HeroProps) {
               </div>
             </div>
 
-            {/* Interactive Selection (Integrated in Left Dark Card) */}
-            <div className="w-full rounded-2xl bg-[#140202] text-[#FAF6F0] p-5 border border-[#3D0303] shadow-md mt-2">
-              <div className="flex items-center justify-between gap-2 mb-2">
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#240404] text-[#D7C3B1] border border-[#530000]/60 text-[10px] font-bold uppercase tracking-wider">
-                  <Sparkles className="w-3 h-3 text-[#D7C3B1]" />
-                  <span>Interactive Selection</span>
+            {/* Interactive Service Summary Card (Elevated Luxury Style) */}
+            <div className="w-full rounded-2xl bg-gradient-to-b from-[#1E0404] to-[#120101] text-[#FAF6F0] p-6 border border-[#530000]/80 shadow-[0_12px_32px_rgba(0,0,0,0.35)] relative overflow-hidden group mt-3">
+              <div className="absolute top-0 right-0 w-44 h-44 bg-[#530000]/25 rounded-full blur-2xl pointer-events-none" />
+              <div className="relative z-10">
+                <div className="flex items-center justify-between gap-2 mb-3">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#2E0707] text-[#E7D6C6] border border-[#7A1C1C]/60 text-[11px] font-bold uppercase tracking-wider shadow-inner">
+                    <Sparkles className="w-3 h-3 text-[#D7C3B1]" />
+                    <span>Tailored Services</span>
+                  </div>
+                  <span className="text-[11px] font-medium text-[#D7C3B1]/70">Tap to plan with us</span>
                 </div>
-                <span className="text-[10px] text-[#FAF6F0]/60">Select to inquire</span>
-              </div>
 
-              <h3 className="text-sm sm:text-base font-serif font-bold text-white mb-3">
-                What does your brand need?
-              </h3>
+                <div className="flex items-baseline justify-between mb-3.5">
+                  <h3 className="text-base sm:text-lg font-serif font-bold text-white tracking-tight">
+                    What does your brand need?
+                  </h3>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#D7C3B1] bg-[#530000]/40 px-2 py-0.5 rounded-full border border-[#D7C3B1]/20">
+                    2M+ Views Generated
+                  </span>
+                </div>
 
-              <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                {HERO_BAR_CHIPS.map((chip) => (
-                  <button
-                    key={chip}
-                    onClick={() => onOpenQuote(chip)}
-                    className="group px-3 py-1.5 rounded-full text-[11px] sm:text-xs font-medium bg-[#200505] border border-[#D7C3B1]/30 text-[#FAF6F0] hover:bg-[#530000] hover:border-[#530000] hover:text-white transition-all flex items-center gap-1 shadow-2xs"
-                  >
-                    <span>{chip}</span>
-                    <ArrowUpRight className="w-3 h-3 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-[#D7C3B1]" />
-                  </button>
-                ))}
+                <div className="flex flex-wrap gap-2">
+                  {HERO_BAR_CHIPS.map((chip) => (
+                    <button
+                      key={chip}
+                      onClick={() => onOpenQuote(chip)}
+                      className="group px-3.5 py-1.5 rounded-full text-xs font-medium bg-[#140202]/90 border border-[#D7C3B1]/30 text-[#FAF6F0] hover:bg-[#530000] hover:border-[#D7C3B1] hover:text-white transition-all flex items-center gap-1.5 shadow-sm hover:shadow-md hover:scale-[1.02] active:scale-[0.98]"
+                    >
+                      <span>{chip}</span>
+                      <ArrowUpRight className="w-3 h-3 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all text-[#D7C3B1]" />
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -498,8 +506,8 @@ export default function Hero({ onOpenQuote, onOpenAudit }: HeroProps) {
                             <div className="text-[10px] text-[#5A4842] font-medium">Brands</div>
                           </div>
                           <div>
-                            <div className="text-sm font-bold text-[#140202]">400K+</div>
-                            <div className="text-[10px] text-[#5A4842] font-medium">Top Reels</div>
+                            <div className="text-sm font-bold text-[#140202]">2M+</div>
+                            <div className="text-[10px] text-[#5A4842] font-medium">Views</div>
                           </div>
                           <div>
                             <div className="text-sm font-bold text-[#140202]">6</div>

@@ -123,10 +123,10 @@ const METRICS: MetricCardProps[] = [
   },
   {
     number: "03",
-    label: "Top Reel Views",
-    targetValue: 400,
-    suffix: "K+",
-    description: "views across our top 5 reels",
+    label: "Organic Views",
+    targetValue: 2,
+    suffix: "M+",
+    description: "organic views generated",
   },
   {
     number: "04",

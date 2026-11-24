@@ -6,8 +6,10 @@ import Hero from "@/components/Hero";
 import NumbersStrip from "@/components/NumbersStrip";
 import ClientLogosSection from "@/components/ClientLogosSection";
 import HomeServicesSection from "@/components/HomeServicesSection";
+import DriveMediaSection from "@/components/DriveMediaSection";
+import RowTestimonialsSection from "@/components/RowTestimonialsSection";
+import WhereWeWorkMapSection from "@/components/WhereWeWorkMapSection";
 import FounderCallSection from "@/components/FounderCallSection";
-import SelectedWorkSection from "@/components/SelectedWorkSection";
 import FinalCtaSection from "@/components/FinalCtaSection";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
@@ -21,7 +23,7 @@ export default function Home() {
 
   const handleOpenQuote = (service?: string) => {
     setModalMode("quote");
-    setModalService(service || "Social media management");
+    setModalService(service || "Social Media Management");
     setIsQuoteModalOpen(true);
   };
 
@@ -36,40 +38,46 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-[#FAF6F0] text-[#140202] selection:bg-[#520000] selection:text-white">
-      {/* 00. Global Navigation: Home · Work · Services · Plans · About · Contact + Book a call */}
+      {/* 00. Global Navigation: Home · For Clinics · Work · Services · Plans · About · Contact */}
       <Navbar onOpenQuote={handleOpenQuote} onOpenAudit={handleOpenAudit} />
 
-      {/* 01. Section 1: Hero (Weproms Style: Geographically Accurate World Map from Pakistan, Headline, 1a Hero Bar) */}
+      {/* HeroSection: With newly styled interactive summary card & audit form */}
       <Hero onOpenQuote={handleOpenQuote} onOpenAudit={handleOpenAudit} />
 
-      {/* 02. Section 2: Numbers Strip (37+ brands · 6 countries · 400K+ views · Since 2019) */}
+      {/* Section 1: Numbers Strip (2M+ organic views generated · 37+ brands · 6 countries · Since 2019) */}
       <NumbersStrip />
 
-      {/* 03. Section 3: Client Logos (Trusted by brands across 6 countries + Single-color logos + Unnamed text tiles) */}
+      {/* Section 2: Trusted by Brands */}
       <ClientLogosSection />
 
-      {/* 04. Section 4: Services (What we do: 1 Large card + 6 small cards) */}
+      {/* Section 3: Services (Social Media Management, Branding & Designing, Video Editing, Paid Ads, PR & Influencer Marketing, Personal Branding, Email Marketing) */}
       <HomeServicesSection onOpenQuote={handleOpenQuote} />
 
-      {/* 05. Section 5: Book a call with Esha (Signature founder banner) */}
-      <FounderCallSection onOpenBooking={() => handleOpenQuote("20-minute call")} />
+      {/* Section 4: Best pictures and videos from drive */}
+      <DriveMediaSection />
 
-      {/* 06. Section 6: Selected work + testimonials (4 project cards + 3 real client quotes + Portfolio by email) */}
-      <SelectedWorkSection />
+      {/* Section 5: Testimonial total 6 in row form */}
+      <RowTestimonialsSection />
 
-      {/* 07. Section 7: Final CTA (Ready to grow your brand on social?) */}
+      {/* Section 6: Map (Global Reach from Pakistan) */}
+      <WhereWeWorkMapSection />
+
+      {/* Founder Call Banner */}
+      <FounderCallSection onOpenBooking={() => handleOpenQuote("20-minute consultation call")} />
+
+      {/* Final Call to Action */}
       <FinalCtaSection onOpenQuote={() => handleOpenQuote()} />
 
-      {/* Global Footer (Newsletter + Pages + Socials) */}
+      {/* Footer: Styled just like Roy's Digital Media */}
       <Footer />
 
-      {/* On Every Page: Floating WhatsApp button "Chat with Esha" */}
+      {/* Direct WhatsApp Contact Floating Button */}
       <FloatingWhatsApp />
 
-      {/* On Every Page: Cookie Banner on first visit */}
+      {/* Cookie Banner */}
       <CookieBanner />
 
-      {/* Unified Quote & Free Social Media Audit Modal */}
+      {/* Quote & Free Social Media Audit Modal */}
       <QuoteModal
         isOpen={isQuoteModalOpen}
         onClose={handleCloseModal}

@@ -328,6 +328,270 @@ export const EXACT_TEAM: TeamMember[] = [
   },
 ];
 
+export interface ClientCaseStudy {
+  id: string;
+  name: string;
+  service: string;
+  tagline: string;
+  description: string;
+  images: string[];
+  video?: string;
+  stat: string;
+  category: string;
+  location: string;
+  deliverables: string[];
+  metrics: { label: string; val: string }[];
+  clientQuote?: string;
+}
+
+export const CLIENT_CASE_STUDIES: ClientCaseStudy[] = [
+  {
+    id: "hestia-harlow",
+    name: "Hestia Harlow",
+    service: "Social Media Management",
+    tagline: "Luxury tablescapes, seasonal campaigns & chic minimalist aesthetic",
+    description:
+      "We gave Hestia Harlow a feed that feels like stepping into one of their gatherings: clean, minimal and quietly chic. We planned and ran their full seasonal calendar, from fall and Halloween to Thanksgiving and New Year. Each campaign was built around beautiful tablescapes, intimate events and the small details that make a moment worth sharing. We also handled their event and partner collaborations, so every season felt fresh but still unmistakably theirs.",
+    images: [
+      "/images/drive/hestia-harlow/hestia-1.png",
+      "/images/drive/hestia-harlow/hestia-2.png",
+      "/images/drive/hestia-harlow/hestia-3.jpeg",
+      "/images/drive/hestia-harlow/hestia-4.jpeg",
+      "/images/drive/hestia-harlow/hestia-5.jpeg",
+    ],
+    video: "/images/drive/hestia-harlow/hestia-video.mp4",
+    stat: "Full Seasonal Calendar",
+    category: "Events & Hospitality",
+    location: "United States · East Coast",
+    deliverables: [
+      "Seasonal Campaign Planning",
+      "Tablescape Art Direction",
+      "Partner Collaborations & PR",
+      "Editorial Feed Architecture",
+    ],
+    metrics: [
+      { label: "MARKET", val: "United States" },
+      { label: "CADENCE", val: "Seasonal Calendars" },
+      { label: "AESTHETIC", val: "Quiet Luxury Chic" },
+    ],
+    clientQuote:
+      "Working with Esha and her agency was smooth and professional. The collaboration felt like a true partnership, with high-quality content delivered on time.",
+  },
+  {
+    id: "loomi-tikka",
+    name: "Loomi Tikka",
+    service: "Content Creation and Design",
+    tagline: "Flavours of Bahrain at Global Village, Dubai",
+    description:
+      "LoomiTikka brings the flavours of Bahrain to Global Village, Dubai, and we gave it a look worth stopping for. We created everything you see on their feed: the designs, the food content and the visual identity that ties it together. We planned their Instagram and TikTok calendar, made content for their Sikka event, and produced delivery-ready visuals for Deliveroo and Careem. The result is a brand that looks as warm and bold online as the food tastes in person.",
+    images: [
+      "/images/drive/loomi-tikka/loomi-1.png",
+      "/images/drive/loomi-tikka/loomi-2.png",
+      "/images/drive/loomi-tikka/loomi-3.png",
+      "/images/drive/loomi-tikka/loomi-4.png",
+      "/images/drive/loomi-tikka/loomi-5.png",
+      "/images/drive/loomi-tikka/loomi-6.png",
+    ],
+    video: "/images/drive/loomi-tikka/loomi-video.mp4",
+    stat: "Global Village Dubai",
+    category: "Food & Beverage",
+    location: "Dubai, UAE · Global Village",
+    deliverables: [
+      "Food Content Production",
+      "Deliveroo & Careem Visuals",
+      "Sikka Event Coverage",
+      "TikTok & Reels Strategy",
+    ],
+    metrics: [
+      { label: "LOCATION", val: "Global Village Dubai" },
+      { label: "CHANNELS", val: "IG, TikTok & Delivery" },
+      { label: "IMPACT", val: "High Footfall & Orders" },
+    ],
+  },
+  {
+    id: "er-organics",
+    name: "ER Organics",
+    service: "Influencer Marketing & Social Media Management",
+    tagline: "Clean skincare campaigns with top tier creators",
+    description:
+      "ER Organics had clean skincare worth talking about, so we got the right people talking. We ran their full influencer marketing, from picking the creators to planning the campaigns and getting the content live. That included collaborations with well-known names like Aena Khan and Amna Shehzad, alongside a wider group of creators. Alongside the influencer work, we managed their social media end to end, so every campaign had a polished, trustworthy feed to land on.",
+    images: [
+      "/images/drive/er-organics/er-1.jpeg",
+      "/images/drive/er-organics/er-2.jpeg",
+      "/images/drive/er-organics/er-3.jpeg",
+      "/images/drive/er-organics/er-4.jpeg",
+      "/images/drive/er-organics/er-5.jpeg",
+      "/images/drive/er-organics/er-6.jpeg",
+      "/images/drive/er-organics/er-7.jpeg",
+    ],
+    stat: "Aena Khan & Top Creators",
+    category: "Skincare & Wellness",
+    location: "Pakistan · Nationwide",
+    deliverables: [
+      "Creator Outreach & Management",
+      "Celebrity Collabs (Aena Khan)",
+      "End-to-End Social Planning",
+      "Feed Aesthetic Architecture",
+    ],
+    metrics: [
+      { label: "CREATORS", val: "Aena Khan & Top Roster" },
+      { label: "NICHE", val: "Clean Skincare & Organic" },
+      { label: "STRATEGY", val: "Influencer PR + SMM" },
+    ],
+    clientQuote:
+      "Everything you mentioned shows in your work. You’ve done great for me so far, and I can tell it’s because you’ve built real consistency.",
+  },
+  {
+    id: "dekco-construction",
+    name: "Dekco Construction",
+    service: "Social Media and Paid Ads",
+    tagline: "Kansas City residential & commercial construction",
+    description:
+      "Deco is a construction company in Kansas City, and we built their online presence the way they build everything else: solid, clean and made to last. We managed their social media, showing off finished projects, the craft behind them and the team doing the work. We also ran their paid ad campaigns to put Deco in front of the right homeowners and businesses across the city. Want the full results? DM us for the complete case study.",
+    images: [
+      "/images/drive/dekco/dekco-1.jpeg",
+      "/images/drive/dekco/dekco-2.jpeg",
+      "/images/drive/dekco/dekco-3.jpeg",
+    ],
+    stat: "Kansas City Ad Reach",
+    category: "Construction & Living",
+    location: "Kansas City, USA",
+    deliverables: [
+      "Targeted Meta Ads Funnels",
+      "Craftsmanship Video Spotlights",
+      "Homeowner Retargeting",
+      "Local Commercial Authority",
+    ],
+    metrics: [
+      { label: "TERRITORY", val: "Kansas City, MO" },
+      { label: "AUDIENCE", val: "Homeowners & Commercial" },
+      { label: "TACTIC", val: "Paid Ads + Project Stories" },
+    ],
+  },
+  {
+    id: "skinsation",
+    name: "Skinsation",
+    service: "360° Marketing · Creative Direction · Branding · Paid Ads",
+    tagline: "Premier aesthetic clinic in Sialkot",
+    description:
+      "Skinsession is an aesthetic clinic in Sialkot, and we’re the team behind everything people see. We handle their creative direction and branding, and we create and design their content. We also run their social media and paid ads from start to finish, all under one vision. Every post, ad and visual follows the same calm, premium look, so the clinic online feels just like the experience inside it. It’s true 360° marketing: one team, one story.",
+    images: [
+      "/images/drive/skinsation/skinsation-1.png",
+      "/images/drive/skinsation/skinsation-2.png",
+      "/images/drive/skinsation/skinsation-3.png",
+      "/images/drive/skinsation/skinsation-4.png",
+      "/images/drive/skinsation/skinsation-5.jpeg",
+      "/images/drive/skinsation/skinsation-6.jpeg",
+      "/images/drive/skinsation/skinsation-7.png",
+    ],
+    video: "/images/drive/skinsation/skinsation-video.mp4",
+    stat: "360° Clinic Presence",
+    category: "Aesthetic Clinic",
+    location: "Sialkot, Pakistan",
+    deliverables: [
+      "Calm Luxury Brand Identity",
+      "Doctor & Treatment Reels",
+      "Compliance-Aware Meta Ads",
+      "360° Full Campaign Handling",
+    ],
+    metrics: [
+      { label: "SECTOR", val: "Aesthetic Medicine" },
+      { label: "MODEL", val: "Full 360° Growth" },
+      { label: "AESTHETIC", val: "Clinical & Calm Luxury" },
+    ],
+    clientQuote:
+      "Every post, ad and visual follows the same calm, premium look, so the clinic online feels just like the experience inside it.",
+  },
+  {
+    id: "flyseeker",
+    name: "Flyseeker",
+    service: "Branding, Designing, Social Media",
+    tagline: "Dubai travel agency with wanderlust-led visuals",
+    description:
+      "Fly Seekers is a travel agency in Dubai, and we gave them a social presence that makes people want to pack a bag. We shaped their branding, designed their visuals and ran their social media. The feed feels bright, trustworthy and full of wanderlust. Every post was made to do two jobs: show the destination, and make it easy to book with Fly Seekers.",
+    images: [
+      "/images/drive/flyseeker/flyseeker-1.png",
+      "/images/drive/flyseeker/flyseeker-2.png",
+      "/images/drive/flyseeker/flyseeker-3.png",
+      "/images/drive/flyseeker/flyseeker-4.png",
+    ],
+    video: "/images/drive/flyseeker/flyseeker-video.mp4",
+    stat: "Dubai Travel Inquiries",
+    category: "Travel & Hospitality",
+    location: "Dubai, United Arab Emirates",
+    deliverables: [
+      "Wanderlust Brand System",
+      "Destination Reels & Carousels",
+      "Direct Booking Inquiries Flow",
+      "Ongoing Channel Management",
+    ],
+    metrics: [
+      { label: "HUB", val: "Dubai, UAE" },
+      { label: "CONVERSION", val: "Direct Travel Bookings" },
+      { label: "CONTENT", val: "Destination Reels & Deals" },
+    ],
+  },
+  {
+    id: "toebeansters",
+    name: "Toebeansters",
+    service: "Character Design & Animation",
+    tagline: "Plush toy brand brought to life with social character animation",
+    description:
+      "TOEBEANSTERS is a plush toy brand, and we helped bring its characters to life. We designed the characters, each with a look and personality of its own, then animated them for social media so they could move, play and win people over on screen. The result is a cast of characters that feels as soft and lovable online as the toys do in your hands.",
+    images: [
+      "/images/drive/toebeansters/toebeansters-1.png",
+      "/images/drive/toebeansters/toebeansters-2.jpeg",
+      "/images/drive/toebeansters/toebeansters-3.jpeg",
+      "/images/drive/toebeansters/toebeansters-4.jpeg",
+      "/images/drive/toebeansters/toebeansters-5.jpeg",
+      "/images/drive/toebeansters/toebeansters-6.jpeg",
+    ],
+    stat: "Character Animation",
+    category: "Brand Design & Toys",
+    location: "Global E-Commerce Brand",
+    deliverables: [
+      "Original Character Concepts",
+      "Short-Form 2D/3D Animation",
+      "Social-First Storytelling",
+      "Viral Character IP Building",
+    ],
+    metrics: [
+      { label: "PRODUCT", val: "Plush Toys & Merchandise" },
+      { label: "FORMAT", val: "Character Animation" },
+      { label: "GOAL", val: "Viral Social Attachment" },
+    ],
+  },
+  {
+    id: "nsg-group",
+    name: "NSG",
+    service: "Paid Ads & Ad Creatives",
+    tagline: "High-performance scroll-stopping ad creatives for roofing & insurance",
+    description:
+      "NSG works in roofing and insurance, a field where trust has to come fast. We designed their ad creatives: clear, confident visuals made to stop the scroll and get homeowners to act. Every creative was built for performance, with strong headlines, clean layouts and one simple message per ad, ready for NSG to launch across their campaigns.",
+    images: [
+      "/images/drive/nsg/nsg-1.png",
+      "/images/drive/nsg/nsg-2.png",
+      "/images/drive/nsg/nsg-3.png",
+      "/images/drive/nsg/nsg-4.png",
+      "/images/drive/nsg/nsg-5.png",
+    ],
+    stat: "High-CTR Creatives",
+    category: "Performance Ads",
+    location: "United States · Multi-State",
+    deliverables: [
+      "Scroll-Stopping Direct-Response Creatives",
+      "High-CTR Visual Hooks",
+      "Ad Copy & Message Hierarchy",
+      "Multi-Variant Campaign Packs",
+    ],
+    metrics: [
+      { label: "VERTICAL", val: "Roofing & Insurance" },
+      { label: "FOCUS", val: "High Scroll-Stop CTR" },
+      { label: "FORMAT", val: "Direct Action Ad Sets" },
+    ],
+  },
+];
+
 // Page 23: Contact
 export const EXACT_CONTACT = {
   callout: "FEEL FREE TO REACH OUT IF YOU HAVE ANY QUERIES",
@@ -336,10 +600,11 @@ export const EXACT_CONTACT = {
   instagram: "axoyl.digital",
   instagramPk: "axoyldigital.pk",
   linkedin: "axoyldigital",
-  phone: "+92 349 2976505",
-  whatsappNumber: "923492976505",
+  phone: "+923359441111",
+  whatsappNumber: "923359441111",
   email: "hello@axoyldigital.com",
-  founderEmail: "esha@axoyldigital.com",
+  founderEmail: "hello@axoyldigital.com",
+  address: "Will add soon, getting one.",
 };
 
 export const AGENCY_INFO = {
@@ -347,10 +612,11 @@ export const AGENCY_INFO = {
   shortName: "Axoyl",
   fullName: "Axoyl Digital Social Media Agency & Marketing PR",
   tagline: "Social media that builds brands people buy from.",
-  phone: "+92 349 2976505",
-  whatsappNumber: "923492976505",
+  phone: "+923359441111",
+  whatsappNumber: "923359441111",
   email: "hello@axoyldigital.com",
-  founderEmail: "esha@axoyldigital.com",
+  founderEmail: "hello@axoyldigital.com",
+  address: "Will add soon, getting one.",
   instagram: "axoyl.digital",
   instagramPk: "axoyldigital.pk",
   linkedin: "axoyldigital",

@@ -13,7 +13,9 @@ interface NavbarProps {
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
+  { href: "/clinics", label: "For Clinics" },
   { href: "/portfolio", label: "Work" },
+  { href: "/case-studies", label: "Case Studies" },
   { href: "/services", label: "Services" },
   { href: "/plans", label: "Plans" },
   { href: "/about", label: "About" },

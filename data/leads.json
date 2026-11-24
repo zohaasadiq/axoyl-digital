@@ -1,5 +1,335 @@
 [
   {
+    "id": "QTE_1795544210823",
+    "timestamp": "2026-11-24T18:16:50.824Z",
+    "type": "case_studies_request",
+    "name": "jksj",
+    "email": "zohaasadiq.zs@gmail.com",
+    "brandName": "sdds",
+    "handle": "N/A",
+    "country": "N/A",
+    "services": [
+      "General Inquiry"
+    ],
+    "budget": "N/A",
+    "message": "",
+    "ip": "::1",
+    "status": "new",
+    "routedTo": [
+      "data/leads.json",
+      "data/Axoyl_Forms_Master_Spreadsheet.csv",
+      "Esha WhatsApp (+92 349 2976505)",
+      "axoyldigital@gmail.com"
+    ]
+  },
+  {
+    "id": "QTE_1795543250975",
+    "timestamp": "2026-11-24T18:00:50.976Z",
+    "type": "quote_request",
+    "name": "esha",
+    "email": "esha@gmail.com",
+    "brandName": "absd",
+    "handle": "abcd",
+    "country": "Pakistan",
+    "services": [
+      "20-minute consultation call",
+      "Paid ads",
+      "Email marketing",
+      "PR"
+    ],
+    "budget": "$1,000 - $2,500 / mo",
+    "message": "ldkjslkd",
+    "ip": "::1",
+    "status": "new",
+    "routedTo": [
+      "data/leads.json",
+      "data/Axoyl_Forms_Master_Spreadsheet.csv",
+      "Esha WhatsApp (+92 349 2976505)",
+      "axoyldigital@gmail.com"
+    ]
+  },
+  {
+    "id": "AUD_1795457344439",
+    "timestamp": "2026-11-23T18:09:04.439Z",
+    "type": "free_audit",
+    "name": "N/A",
+    "email": "audittest@gmail.com",
+    "brandName": "Audit Brand",
+    "handle": "N/A",
+    "country": "N/A",
+    "services": [
+      "General Inquiry"
+    ],
+    "budget": "N/A",
+    "message": "",
+    "ip": "::1",
+    "status": "new",
+    "routedTo": [
+      "data/leads.json",
+      "data/Axoyl_Forms_Master_Spreadsheet.csv",
+      "Esha WhatsApp (+92 349 2976505)",
+      "axoyldigital@gmail.com"
+    ]
+  },
+  {
+    "id": "QTE_1795457327012",
+    "timestamp": "2026-11-23T18:08:47.013Z",
+    "type": "quote_request",
+    "name": "Test User",
+    "email": "cooldowntest@gmail.com",
+    "brandName": "Cooldown Brand",
+    "handle": "N/A",
+    "country": "N/A",
+    "services": [
+      "General Inquiry"
+    ],
+    "budget": "N/A",
+    "message": "",
+    "ip": "::1",
+    "status": "new",
+    "routedTo": [
+      "data/leads.json",
+      "data/Axoyl_Forms_Master_Spreadsheet.csv",
+      "Esha WhatsApp (+92 349 2976505)",
+      "axoyldigital@gmail.com"
+    ]
+  },
+  {
+    "id": "AUD_1795456632416",
+    "timestamp": "2026-11-23T17:57:12.416Z",
+    "type": "free_audit",
+    "name": "test name",
+    "email": "testname@gmail.com",
+    "brandName": "testeee",
+    "handle": "testeee",
+    "country": "Pakistan",
+    "services": [
+      "PR",
+      "Paid ads"
+    ],
+    "budget": "$1,000 - $2,500 / mo",
+    "message": "hello world",
+    "ip": "::1",
+    "status": "new",
+    "routedTo": [
+      "data/leads.json",
+      "data/Axoyl_Forms_Master_Spreadsheet.csv",
+      "Esha WhatsApp (+92 349 2976505)",
+      "axoyldigital@gmail.com"
+    ]
+  },
+  {
+    "id": "QTE_1795456531051",
+    "timestamp": "2026-11-23T17:55:31.051Z",
+    "type": "quote_request",
+    "name": "Zohaa Sadiq",
+    "email": "zohaasadiq.zs@gmail.com",
+    "brandName": "asd",
+    "handle": "asd",
+    "country": "Pakistan",
+    "services": [
+      "Social Media Management",
+      "Portfolio Consultation"
+    ],
+    "budget": "$1,000 - $2,500 / mo",
+    "message": "asd",
+    "ip": "::1",
+    "status": "new",
+    "routedTo": [
+      "data/leads.json",
+      "data/Axoyl_Forms_Master_Spreadsheet.csv",
+      "Esha WhatsApp (+92 349 2976505)",
+      "axoyldigital@gmail.com"
+    ]
+  },
+  {
+    "id": "QTE_1795456365112",
+    "timestamp": "2026-11-23T17:52:45.112Z",
+    "type": "quote_request",
+    "name": "Check",
+    "email": "check@test.com",
+    "brandName": "N/A",
+    "handle": "N/A",
+    "country": "N/A",
+    "services": [
+      "General Inquiry"
+    ],
+    "budget": "N/A",
+    "message": "",
+    "ip": "::1",
+    "status": "new",
+    "routedTo": [
+      "data/leads.json",
+      "data/Axoyl_Forms_Master_Spreadsheet.csv",
+      "Esha WhatsApp (+92 349 2976505)",
+      "axoyldigital@gmail.com"
+    ]
+  },
+  {
+    "id": "QTE_1795379129192",
+    "timestamp": "2026-11-22T20:25:29.192Z",
+    "type": "quote_request",
+    "name": "Zohaa Sadiq",
+    "email": "zohaasadiq.zs@gmail.com",
+    "brandName": "akhkjas",
+    "handle": "asajshj",
+    "country": "Pakistan",
+    "services": [
+      "Social Media Management",
+      "Portfolio Consultation"
+    ],
+    "budget": "$1,000 - $2,500 / mo",
+    "message": "khakdjh",
+    "ip": "::1",
+    "status": "new",
+    "routedTo": [
+      "data/leads.json",
+      "data/Axoyl_Forms_Master_Spreadsheet.csv",
+      "Esha WhatsApp (+92 349 2976505)",
+      "axoyldigital@gmail.com"
+    ]
+  },
+  {
+    "id": "AUD_1795378587906",
+    "timestamp": "2026-11-22T20:16:27.906Z",
+    "type": "free_audit",
+    "name": "ZOhaa",
+    "email": "zohaasadiq.zs@gmail.com",
+    "brandName": "testing",
+    "handle": "testin",
+    "country": "Pakistan",
+    "services": [
+      "Social media management"
+    ],
+    "budget": "$1,000 - $2,500 / mo",
+    "message": "sdhksjh",
+    "ip": "::1",
+    "status": "new",
+    "routedTo": [
+      "data/leads.json",
+      "data/Axoyl_Forms_Master_Spreadsheet.csv",
+      "Esha WhatsApp (+92 349 2976505)",
+      "axoyldigital@gmail.com"
+    ]
+  },
+  {
+    "id": "QTE_1795378535984",
+    "timestamp": "2026-11-22T20:15:35.984Z",
+    "type": "case_studies_request",
+    "name": "zohaa",
+    "email": "zohaasadiq.zs@gmail.com",
+    "brandName": "abc",
+    "handle": "N/A",
+    "country": "N/A",
+    "services": [
+      "General Inquiry"
+    ],
+    "budget": "N/A",
+    "message": "",
+    "ip": "::1",
+    "status": "new",
+    "routedTo": [
+      "data/leads.json",
+      "data/Axoyl_Forms_Master_Spreadsheet.csv",
+      "Esha WhatsApp (+92 349 2976505)",
+      "axoyldigital@gmail.com"
+    ]
+  },
+  {
+    "id": "QTE_1795378515969",
+    "timestamp": "2026-11-22T20:15:15.969Z",
+    "type": "quote_request",
+    "name": "Marcus Sterling",
+    "email": "marcus@sterlingaesthetics.co.uk",
+    "brandName": "Sterling Aesthetics Mayfair",
+    "handle": "@sterlingmayfair",
+    "country": "United Kingdom",
+    "services": [
+      "Social Media Management (SMM)",
+      "Short-Form Video Production (Reels / TikTok)",
+      "Paid Meta / TikTok Ad Funnels"
+    ],
+    "budget": "£3,500 - £6,000 / month",
+    "message": "We need high-end organic reels and paid patient acquisition funnels.",
+    "ip": "::1",
+    "status": "new",
+    "routedTo": [
+      "data/leads.json",
+      "data/Axoyl_Forms_Master_Spreadsheet.csv",
+      "Esha WhatsApp (+92 349 2976505)",
+      "axoyldigital@gmail.com"
+    ]
+  },
+  {
+    "id": "QTE_1795378510682",
+    "timestamp": "2026-11-22T20:15:10.682Z",
+    "type": "case_studies_request",
+    "name": "zohaa",
+    "email": "zohaasadiq.zs@gmail.com",
+    "brandName": "testing",
+    "handle": "N/A",
+    "country": "N/A",
+    "services": [
+      "General Inquiry"
+    ],
+    "budget": "N/A",
+    "message": "",
+    "ip": "::1",
+    "status": "new",
+    "routedTo": [
+      "data/leads.json",
+      "data/Axoyl_Forms_Master_Spreadsheet.csv",
+      "Esha WhatsApp (+92 349 2976505)",
+      "axoyldigital@gmail.com"
+    ]
+  },
+  {
+    "id": "QTE_1795378279564",
+    "timestamp": "2026-11-22T20:11:19.564Z",
+    "type": "case_studies_request",
+    "name": "Elena Rossi",
+    "email": "elena.rossi@milanocouture.it",
+    "brandName": "Milano Couture Clinic",
+    "handle": "N/A",
+    "country": "N/A",
+    "services": [
+      "General Inquiry"
+    ],
+    "budget": "N/A",
+    "message": "",
+    "ip": "::1",
+    "status": "new",
+    "routedTo": [
+      "data/leads.json",
+      "data/Axoyl_Forms_Master_Spreadsheet.csv",
+      "Esha WhatsApp (+92 349 2976505)",
+      "axoyldigital@gmail.com"
+    ]
+  },
+  {
+    "id": "QTE_1795378239816",
+    "timestamp": "2026-11-22T20:10:39.816Z",
+    "type": "case_studies_request",
+    "name": "Dr. Claire Vance",
+    "email": "dr.claire@harleyaesthetics.com",
+    "brandName": "Harley Aesthetics London",
+    "handle": "N/A",
+    "country": "N/A",
+    "services": [
+      "General Inquiry"
+    ],
+    "budget": "N/A",
+    "message": "",
+    "ip": "::1",
+    "status": "new",
+    "routedTo": [
+      "data/leads.json",
+      "data/Axoyl_Forms_Master_Spreadsheet.csv",
+      "Esha WhatsApp (+92 349 2976505)",
+      "axoyldigital@gmail.com"
+    ]
+  },
+  {
     "id": "lead_1793990616044",
     "timestamp": "2026-11-06T18:43:36.044Z",
     "type": "social_media_audit",
