@@ -166,7 +166,7 @@ export default function ClientShowcase() {
             </div>
             <div className="flex items-center gap-2 text-xs font-semibold text-[#520000]">
               <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-              <span>Documented in Axoyl Digital Portfolio</span>
+              <span>Verified Client Results</span>
             </div>
           </div>
 

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { Play, TrendingUp, Sparkles, BarChart3, MessageSquare } from "lucide-react";
+import { Play, BarChart3, MessageSquare } from "lucide-react";
 import { REELS_METRICS } from "@/lib/data";
 
 export default function ViralShowcase() {
@@ -11,15 +11,8 @@ export default function ViralShowcase() {
   return (
     <section className="relative py-28 bg-[#F4ECE3] border-t border-[#D7C3B1]/60 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header directly from Page 17 & 18 of Portfolio */}
+        {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#520000]/25 bg-white mb-5 shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-[#520000]" />
-            <span className="text-xs font-bold tracking-[0.2em] text-[#520000] uppercase">
-              Portfolio Pages 17, 18 &amp; 21
-            </span>
-          </div>
-
           <h2 className="text-4xl sm:text-6xl md:text-7xl font-display font-medium text-[#140202] uppercase tracking-tight">
             REELS &amp; VIDEOS<span className="text-[#520000]">.</span>
           </h2>
@@ -75,7 +68,7 @@ export default function ViralShowcase() {
         {/* Content based on Active Tab */}
         {activeTab === "reels" && (
           <div className="space-y-8">
-            {/* View Numbers Strip from Portfolio Page 17 */}
+            {/* View Numbers Strip */}
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
               {REELS_METRICS.map((item, idx) => (
                 <div
@@ -95,18 +88,18 @@ export default function ViralShowcase() {
               ))}
             </div>
 
-            {/* Actual Page 17 Slide Preview */}
+            {/* Reels & Videos Preview */}
             <div className="rounded-3xl bg-white border border-[#D7C3B1] p-6 sm:p-8 shadow-xl">
               <div className="flex items-center justify-between mb-4">
                 <span className="text-xs uppercase font-bold text-[#520000] tracking-widest">
-                  Portfolio Slide 17 Preview: REELS &amp; VIDEOS
+                  Reels &amp; Videos
                 </span>
                 <span className="text-xs font-semibold text-[#5A4842]">Axoyl Digital 2026</span>
               </div>
               <div className="relative h-72 sm:h-96 md:h-[480px] w-full rounded-2xl overflow-hidden border border-[#D7C3B1] bg-black">
                 <Image
                   src="/work/slide_17.png"
-                  alt="Portfolio Slide 17: Reels and Videos"
+                  alt="Reels and short-form video performance"
                   fill
                   className="object-contain"
                 />
@@ -120,7 +113,7 @@ export default function ViralShowcase() {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
               <div>
                 <span className="text-xs uppercase font-bold text-[#520000] tracking-widest">
-                  Portfolio Slide 18 Preview
+                  Before / After Analytics
                 </span>
                 <h4 className="text-2xl font-serif font-bold text-[#140202] mt-1">
                   BEFORE / AFTER ANALYTICS
@@ -134,7 +127,7 @@ export default function ViralShowcase() {
             <div className="relative h-72 sm:h-96 md:h-[480px] w-full rounded-2xl overflow-hidden border border-[#D7C3B1] bg-black">
               <Image
                 src="/work/slide_18.png"
-                alt="Portfolio Slide 18: Before After Analytics"
+                alt="Before and after analytics comparison"
                 fill
                 className="object-contain"
               />
@@ -147,7 +140,7 @@ export default function ViralShowcase() {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
               <div>
                 <span className="text-xs uppercase font-bold text-[#520000] tracking-widest">
-                  Portfolio Slide 21 Preview
+                  Clientele Snippets
                 </span>
                 <h4 className="text-2xl font-serif font-bold text-[#140202] mt-1">
                   Cleintele Snipts
@@ -161,7 +154,7 @@ export default function ViralShowcase() {
             <div className="relative h-72 sm:h-96 md:h-[480px] w-full rounded-2xl overflow-hidden border border-[#D7C3B1] bg-black">
               <Image
                 src="/work/slide_21.png"
-                alt="Portfolio Slide 21: Clientele Snippets"
+                alt="Clientele feedback snippets"
                 fill
                 className="object-contain"
               />

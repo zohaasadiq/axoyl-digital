@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import AuditModal from "@/components/AuditModal";
+import QuoteModal from "@/components/QuoteModal";
 import {
   Share2,
   Video,
@@ -13,12 +13,6 @@ import {
   BarChart3,
   Building2,
   UserCheck,
-  Sparkles,
-  ArrowUpRight,
-  Check,
-  CheckCircle2,
-  Clock,
-  ShieldCheck,
 } from "lucide-react";
 import { WE_DEAL_IN, UNMATCHED_SOLUTIONS, EXACT_CONTACT } from "@/lib/data";
 
@@ -149,61 +143,18 @@ const DETAILED_SERVICES_BREAKDOWN = [
 ];
 
 export default function ServicesPage() {
-  const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
 
   return (
     <main className="min-h-screen bg-[#FAF6F0] text-[#140202]">
-      <Navbar onOpenAudit={() => setIsAuditModalOpen(true)} />
-
-      {/* Hero Banner */}
-      <section className="relative pt-44 sm:pt-48 pb-20 overflow-hidden border-b border-[#D7C3B1]/60 bg-[#FAF6F0]">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-[#D7C3B1]/30 rounded-full blur-[140px] pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#520000]/25 bg-white mb-5 shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-[#520000]" />
-            <span className="text-xs font-bold tracking-[0.2em] text-[#520000] uppercase">
-              Portfolio Pages 02 &amp; 03
-            </span>
-          </div>
-
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-display font-medium text-[#140202] uppercase tracking-tight max-w-4xl mx-auto leading-[1.08]">
-            Unmatched Marketing Solutions &amp;{" "}
-            <span className="italic font-serif font-normal text-[#520000]">
-              Core Capabilities
-            </span>
-            .
-          </h1>
-
-          <p className="mt-5 text-base sm:text-lg text-[#3D261E] max-w-3xl mx-auto font-normal leading-relaxed">
-            Axoyl Digital is <strong className="text-[#520000] font-bold">primarily a Social Media Management (SMM) agency</strong> and secondly a full-funnel marketing &amp; PR powerhouse. Here is exactly what we deliver for your brand.
-          </p>
-
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <button
-              onClick={() => setIsAuditModalOpen(true)}
-              className="px-8 py-4 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-[#520000] hover:bg-[#720909] transition-all shadow-md"
-            >
-              Get Free Social Media Audit
-            </button>
-            <a
-              href={`https://wa.me/923492976505`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-4 rounded-full text-xs font-bold uppercase tracking-wider text-[#520000] border border-[#520000]/30 bg-white hover:bg-[#FAF6F0] transition-all shadow-sm"
-            >
-              Chat on WhatsApp
-            </a>
-          </div>
-        </div>
-      </section>
+      <Navbar onOpenQuote={() => setIsQuoteModalOpen(true)} />
 
       {/* Page 02: 4 Pillars Breakdown */}
-      <section className="py-24 bg-[#F4ECE3] border-b border-[#D7C3B1]/60">
+      <section className="pt-40 sm:pt-48 pb-24 bg-[#F4ECE3] border-b border-[#D7C3B1]/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12">
             <span className="text-xs uppercase tracking-widest text-[#520000] font-bold block mb-1">
-              Portfolio Page 02
+              Marketing Solutions
             </span>
             <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#140202]">
               Unmatched Marketing Solutions at Axoyl Digital
@@ -241,7 +192,7 @@ export default function ServicesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs uppercase tracking-widest text-[#520000] font-bold block mb-2">
-              Portfolio Page 03 · Full Scope
+              Full Scope
             </span>
             <h2 className="text-4xl sm:text-6xl font-display font-medium text-[#140202] uppercase tracking-tight">
               WE DEAL IN<span className="text-[#520000]">.</span>
@@ -251,62 +202,21 @@ export default function ServicesPage() {
             </p>
           </div>
 
-          <div className="space-y-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
             {DETAILED_SERVICES_BREAKDOWN.map((service) => (
               <div
                 key={service.id}
-                className={`rounded-3xl p-8 sm:p-10 border transition-all duration-300 ${
-                  service.tier.includes("PRIMARY")
-                    ? "bg-white border-[#520000]/40 shadow-md hover:shadow-xl hover:border-[#520000]"
-                    : "bg-[#FAF6F0] border-[#D7C3B1] hover:border-[#520000]/40 hover:bg-white"
-                }`}
+                className="group rounded-2xl bg-white border border-[#D7C3B1] hover:border-[#520000] p-6 sm:p-7 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all"
               >
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                  <div className="lg:col-span-5">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-12 h-12 rounded-2xl bg-[#FAF6F0] border border-[#D7C3B1] flex items-center justify-center">
-                        {SERVICE_ICONS[service.id]}
-                      </div>
-                      <span className={`text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full ${
-                        service.tier.includes("PRIMARY")
-                          ? "bg-[#520000] text-white shadow-sm"
-                          : "bg-white text-[#520000] border border-[#D7C3B1]"
-                      }`}>
-                        {service.tier}
-                      </span>
-                    </div>
-
-                    <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#140202] mb-3">
-                      {service.title}
-                    </h3>
-
-                    <p className="text-xs sm:text-sm text-[#5A4842] leading-relaxed font-normal mb-6">
-                      {service.desc}
-                    </p>
-
-                    <button
-                      onClick={() => setIsAuditModalOpen(true)}
-                      className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-[#520000] hover:bg-[#720909] transition-colors shadow-sm"
-                    >
-                      <span>Inquire About {service.title.split("(")[0].trim()}</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-
-                  <div className="lg:col-span-7 bg-[#FAF6F0] rounded-2xl p-6 border border-[#D7C3B1]">
-                    <span className="text-xs font-bold uppercase tracking-wider text-[#520000] block mb-3">
-                      Deliverables Included:
-                    </span>
-                    <div className="space-y-2.5">
-                      {service.deliverables.map((item, idx) => (
-                        <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#140202]">
-                          <Check className="w-4 h-4 text-[#520000] shrink-0 mt-0.5" />
-                          <span>{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                <div className="flex items-center justify-between mb-5">
+                  <span className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-[#FAF6F0] border border-[#D7C3B1] group-hover:border-[#520000] transition-colors">
+                    {SERVICE_ICONS[service.id]}
+                  </span>
+                  <span className="text-xs font-bold text-[#D7C3B1]">{service.number}</span>
                 </div>
+                <h3 className="font-serif text-lg sm:text-xl font-bold text-[#140202] leading-snug">
+                  {service.title}
+                </h3>
               </div>
             ))}
           </div>
@@ -363,7 +273,7 @@ export default function ServicesPage() {
       </section>
 
       <Footer />
-      <AuditModal isOpen={isAuditModalOpen} onClose={() => setIsAuditModalOpen(false)} />
+      <QuoteModal isOpen={isQuoteModalOpen} onClose={() => setIsQuoteModalOpen(false)} />
     </main>
   );
 }

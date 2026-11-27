@@ -12,10 +12,7 @@ import RowTestimonialsSection from "@/components/RowTestimonialsSection";
 import WhereWeWorkMapSection from "@/components/WhereWeWorkMapSection";
 import {
   Sparkles,
-  ArrowRight,
-  ArrowUpRight,
   ChevronDown,
-  ShieldCheck,
   CheckCircle2,
   Calendar,
   Layers,
@@ -34,20 +31,22 @@ import {
   Users,
   UserCheck,
   Send,
+  Play,
 } from "lucide-react";
 
 export default function ClinicsPage() {
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
-  const [modalMode, setModalMode] = useState<"quote" | "audit">("audit");
+  const [modalMode, setModalMode] = useState<"quote" | "audit">("quote");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [activeVisual, setActiveVisual] = useState(0);
 
   // Private portfolio form modal state
   const [isPortfolioModalOpen, setIsPortfolioModalOpen] = useState(false);
   const [portfolioForm, setPortfolioForm] = useState({ name: "", niche: "", email: "" });
   const [portfolioSubmitted, setPortfolioSubmitted] = useState(false);
 
-  const handleOpenAudit = () => {
-    setModalMode("audit");
+  const handleOpenQuote = () => {
+    setModalMode("quote");
     setIsQuoteModalOpen(true);
   };
 
@@ -94,38 +93,14 @@ export default function ClinicsPage() {
     },
   ];
 
-  // Section 4: What we do (6 simple cards from homepage + compliance note)
+  // Section 4: What we do — flagship + grid, same pattern as the Pakistan homepage
+  const CLINIC_FLAGSHIP = { title: "Social Media Management", icon: Share2 };
   const CLINIC_SERVICES = [
-    {
-      title: "Social Media Management",
-      desc: "Full monthly treatment calendar, design, captions, scheduling and lead moderation.",
-      icon: Share2,
-    },
-    {
-      title: "Branding & Designing",
-      desc: "Calm, medical-grade aesthetic identities, price lists, story highlights, and clinic signage.",
-      icon: Palette,
-    },
-    {
-      title: "Video Editing",
-      desc: "High-retention reels demonstrating procedures, client journeys, and practitioner expertise.",
-      icon: Film,
-    },
-    {
-      title: "Paid Ads",
-      desc: "Hyper-local Meta ads driving consultation bookings within your clinic’s catchment area.",
-      icon: Target,
-    },
-    {
-      title: "PR & Influencer Marketing",
-      desc: "Vetted creator appointments and patient testimonials that establish clinical credibility.",
-      icon: Users,
-    },
-    {
-      title: "Personal Branding",
-      desc: "Position clinic founders, MDs, and lead injectors as authorities in facial aesthetics.",
-      icon: UserCheck,
-    },
+    { title: "Branding & Designing", icon: Palette },
+    { title: "Video Editing", icon: Film },
+    { title: "Paid Ads", icon: Target },
+    { title: "PR & Influencer Marketing", icon: Users },
+    { title: "Personal Branding", icon: UserCheck },
   ];
 
   // Section 5: How it works (3 numbered steps)
@@ -148,38 +123,57 @@ export default function ClinicsPage() {
   ];
 
   // Section 6: Clinic work (6 visuals from Drive: Skinsation & ER Organics)
-  const CLINIC_VISUALS = [
+  const CLINIC_VISUALS: {
+    type: "image" | "video";
+    src: string;
+    title: string;
+    subtitle: string;
+    brand: string;
+  }[] = [
     {
+      type: "video",
+      src: "/images/drive/skinsation/skinsation-video.mp4",
+      title: "Clinical Treatment & Skincare Showcase",
+      subtitle: "Reel: Master Esthetician Grip",
+      brand: "Skinsation Clinic",
+    },
+    {
+      type: "image",
       src: "/images/drive/skinsation/skinsation-1.png",
       title: "Skinsation Aesthetic Clinic",
       subtitle: "Giveaway & Consultation Booking Creative",
       brand: "Skinsation Clinic",
     },
     {
+      type: "image",
       src: "/images/drive/skinsation/skinsation-4.png",
       title: "It's Not Your Skincare Campaign",
       subtitle: "Dermatological Treatment Education",
       brand: "Skinsation Clinic",
     },
     {
+      type: "image",
       src: "/images/drive/skinsation/skinsation-7.png",
       title: "Clinic Experience Invitation",
       subtitle: "High-End Treatment Room Booking",
       brand: "Skinsation Clinic",
     },
     {
+      type: "image",
       src: "/images/drive/er-organics/er-1.jpeg",
       title: "ER Organics Clean Skincare",
       subtitle: "Influencer Partnership with Aena Khan",
       brand: "ER Organics",
     },
     {
+      type: "image",
       src: "/images/drive/er-organics/er-3.jpeg",
       title: "Clinical Texture & Routine Content",
       subtitle: "Serum & Active Ingredients Showcase",
       brand: "ER Organics",
     },
     {
+      type: "image",
       src: "/images/drive/skinsation/skinsation-2.png",
       title: "Skinsation VIP Client Campaign",
       subtitle: "HydraFacial & Peel Visual Carousel",
@@ -189,10 +183,6 @@ export default function ClinicsPage() {
 
   // Section 9: Quick questions (Accordion 4 questions, closed by default)
   const CLINIC_FAQS = [
-    {
-      q: "Do you only work with clinics,wellness?",
-      a: "No, but clinics and wellness are our specialty, so we already know your clients, your treatments and the rules.",
-    },
     {
       q: "Do I need to film content myself?",
       a: "Only a little. We send simple shot lists, and you can film on your phone between clients.",
@@ -210,53 +200,28 @@ export default function ClinicsPage() {
   return (
     <main className="min-h-screen bg-[#FAF6F0] text-[#140202] selection:bg-[#520000] selection:text-white">
       {/* Navigation */}
-      <Navbar onOpenAudit={handleOpenAudit} />
+      <Navbar onOpenQuote={handleOpenQuote} />
 
-      {/* 1. Hero: Full-width calm image with text on the left */}
-      <section className="relative pt-40 sm:pt-48 pb-20 sm:pb-32 overflow-hidden border-b border-[#D7C3B1]/60">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/drive/skinsation/skinsation-1.png"
-            alt="Wellness Clinic Background"
-            fill
-            priority
-            className="object-cover object-center opacity-25 filter blur-xs"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#FAF6F0] via-[#FAF6F0]/90 to-[#FAF6F0]/40" />
-        </div>
+      {/* 1. Hero: Minimal, centered — matches the Pakistan homepage hero */}
+      <section className="relative pt-32 sm:pt-40 pb-20 sm:pb-28 overflow-hidden bg-[#FAF6F0] text-[#140202] border-b border-[#D7C3B1]/60">
+        <div
+          className="absolute inset-0 opacity-[0.035] pointer-events-none"
+          style={{
+            backgroundImage: `linear-gradient(#530000 1px, transparent 1px), linear-gradient(90deg, #530000 1px, transparent 1px)`,
+            backgroundSize: "60px 60px",
+          }}
+        />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#520000]/25 text-[#520000] text-xs font-bold uppercase tracking-[0.2em] mb-6 shadow-xs">
-              <Sparkles className="w-3.5 h-3.5 text-[#520000]" />
-              <span>Axoyl For Clinics &amp; Wellness</span>
-            </div>
-
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-[#140202] tracking-tight leading-[1.12] mb-6">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center animate-fade-in mb-10">
+            <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-medium leading-[1.05] tracking-tight text-[#140202] mb-5">
               Social media for wellness brands:{" "}
-              <span className="text-[#520000] italic font-normal">clinics, studios &amp; skincare.</span>
+              <span className="text-[#520000] italic">clinics, studios &amp; skincare.</span>
             </h1>
 
-            <p className="text-lg sm:text-xl font-serif text-[#3D261E] mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg text-[#3D261E]">
               Your brand is premium. Your Instagram should look premium.
             </p>
-
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-              <button
-                onClick={handleOpenAudit}
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-[#520000] hover:bg-[#380000] text-white text-xs sm:text-sm font-bold uppercase tracking-wider transition-all shadow-md transform hover:-translate-y-0.5"
-              >
-                <span>Book a free audit</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => setIsPortfolioModalOpen(true)}
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white hover:bg-[#FAF6F0] border border-[#D7C3B1] text-[#140202] text-xs sm:text-sm font-bold uppercase tracking-wider transition-all shadow-xs"
-              >
-                <span>Request Private Portfolio</span>
-                <ArrowUpRight className="w-4 h-4 text-[#520000]" />
-              </button>
-            </div>
           </div>
         </div>
       </section>
@@ -301,9 +266,6 @@ export default function ClinicsPage() {
       <section className="py-20 sm:py-24 bg-[#FAF6F0] border-b border-[#D7C3B1]/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mb-12">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#520000] mb-2">
-              Common Bottlenecks
-            </p>
             <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#140202]">
               Sound familiar?
             </h2>
@@ -337,53 +299,38 @@ export default function ClinicsPage() {
         </div>
       </section>
 
-      {/* 4. What we do: 6 simple cards + Compliance-aware note */}
+      {/* 4. What we do: flagship + grid, same pattern as the Pakistan homepage */}
       <section className="py-20 sm:py-24 bg-white border-b border-[#D7C3B1]/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#520000] mb-2">
-              Our Capabilities
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#140202]">
-              What we do
-            </h2>
-            <p className="mt-3 text-sm text-[#5A4842]">
-              Complete hands-off social media management crafted specifically for treatment rooms, med-spas, and aesthetic practices.
-            </p>
+          <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#140202] tracking-tight mb-12 sm:mb-16">
+            What we do.
+          </h2>
+
+          {/* Flagship service */}
+          <div className="w-full flex items-center gap-5 sm:gap-7 rounded-2xl bg-[#520000] px-6 sm:px-10 py-7 sm:py-9 shadow-sm mb-4 sm:mb-6">
+            <span className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/10 shrink-0">
+              <CLINIC_FLAGSHIP.icon className="w-6 h-6 sm:w-7 sm:h-7 text-[#D7C3B1]" />
+            </span>
+            <span className="font-serif text-2xl sm:text-4xl font-bold text-white">
+              {CLINIC_FLAGSHIP.title}
+            </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-            {CLINIC_SERVICES.map((s, idx) => {
-              const Icon = s.icon;
-              return (
-                <div
-                  key={idx}
-                  className="rounded-2xl bg-[#FAF6F0] border border-[#D7C3B1] p-6 hover:border-[#520000] hover:shadow-md transition-all flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="w-10 h-10 rounded-xl bg-white border border-[#D7C3B1]/60 flex items-center justify-center text-[#520000] mb-4">
-                      <Icon className="w-5 h-5" />
-                    </div>
-                    <h3 className="text-lg font-serif font-bold text-[#140202] mb-2">
-                      {s.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-[#5A4842] leading-relaxed">
-                      {s.desc}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Compliance-aware badge */}
-          <div className="text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FAF6F0] border border-[#D7C3B1] text-xs font-semibold text-[#520000]">
-              <ShieldCheck className="w-4 h-4 text-emerald-600" />
-              <span>We are Compliance-aware</span>
-              <span className="text-[#5A4842]/60">·</span>
-              <span className="text-[#5A4842]">Adherence to medical &amp; aesthetic advertising regulations</span>
-            </div>
+          {/* Remaining services */}
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+            {CLINIC_SERVICES.map((service) => (
+              <div
+                key={service.title}
+                className="group rounded-xl bg-white border border-[#D7C3B1] hover:border-[#520000] p-4 sm:p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all"
+              >
+                <span className="flex items-center justify-center w-9 h-9 rounded-full bg-[#FAF6F0] border border-[#D7C3B1] group-hover:bg-[#520000] group-hover:border-[#520000] transition-colors mb-3">
+                  <service.icon className="w-4 h-4 text-[#520000] group-hover:text-white transition-colors" />
+                </span>
+                <span className="font-serif text-sm sm:text-base font-bold text-[#140202] leading-snug block">
+                  {service.title}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -392,9 +339,6 @@ export default function ClinicsPage() {
       <section className="py-20 sm:py-24 bg-[#FAF6F0] border-b border-[#D7C3B1]/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-14">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#520000] mb-2">
-              Our Process
-            </p>
             <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#140202]">
               How it works
             </h2>
@@ -429,65 +373,75 @@ export default function ClinicsPage() {
       {/* 6. Clinic work: Grid of visuals from Drive + private portfolio button */}
       <section className="py-20 sm:py-24 bg-white border-b border-[#D7C3B1]/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#520000] mb-2">
-                Public Case Highlights
-              </p>
-              <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#140202]">
-                Clinic work
-              </h2>
-              <p className="mt-2 text-sm text-[#5A4842] max-w-xl">
-                Featured work from Skinsation Clinic and ER Organics. Add your email below to receive our confidential portfolio with patient booking data and revenue metrics.
-              </p>
+          {/* Media Gallery: thumbnail list + main viewer */}
+          <div className="grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-4 sm:gap-6 mb-12">
+            {/* Thumbnail list */}
+            <div className="order-2 lg:order-1 flex lg:flex-col gap-3 overflow-x-auto lg:overflow-x-visible lg:h-[560px] lg:overflow-y-auto rounded-3xl border border-[#D7C3B1] bg-[#FAF6F0] p-3 shadow-sm">
+              {CLINIC_VISUALS.map((item, idx) => {
+                const isActive = idx === activeVisual;
+                return (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveVisual(idx)}
+                    className={`group relative shrink-0 w-24 h-24 lg:w-full lg:h-auto lg:aspect-square rounded-xl overflow-hidden border-2 bg-[#140202] transition-all ${
+                      isActive ? "border-[#520000]" : "border-transparent hover:border-[#D7C3B1]"
+                    }`}
+                  >
+                    {item.type === "video" ? (
+                      <>
+                        <video
+                          src={item.src}
+                          muted
+                          playsInline
+                          preload="metadata"
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                          <Play className="w-4 h-4 text-white fill-white" />
+                        </div>
+                      </>
+                    ) : (
+                      <Image src={item.src} alt={item.title} fill sizes="192px" className="object-cover" />
+                    )}
+                  </button>
+                );
+              })}
             </div>
 
-            <button
-              onClick={() => setIsPortfolioModalOpen(true)}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#520000] hover:bg-[#380000] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-sm shrink-0 self-start md:self-auto"
-            >
-              <span>Request our private portfolio</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
-
-          {/* Visual Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {CLINIC_VISUALS.map((item, idx) => (
-              <div
-                key={idx}
-                className="group rounded-3xl bg-[#FAF6F0] border border-[#D7C3B1] overflow-hidden hover:border-[#520000] hover:shadow-xl transition-all flex flex-col justify-between"
-              >
-                <div className="relative aspect-[4/5] w-full bg-[#140202] overflow-hidden flex items-center justify-center">
-                  <Image
-                    src={item.src}
-                    alt=""
-                    fill
-                    aria-hidden="true"
-                    className="object-cover filter blur-md opacity-30 pointer-events-none"
+            {/* Main viewer */}
+            <div className="order-1 lg:order-2 relative lg:h-[560px] rounded-3xl bg-[#140202] border border-[#D7C3B1] overflow-hidden">
+              <div className="relative aspect-[4/5] sm:aspect-video lg:h-full lg:aspect-auto w-full h-full bg-[#140202] flex items-center justify-center overflow-hidden">
+                {CLINIC_VISUALS[activeVisual].type === "video" ? (
+                  <video
+                    key={CLINIC_VISUALS[activeVisual].src}
+                    src={CLINIC_VISUALS[activeVisual].src}
+                    controls
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="w-full h-full object-contain"
                   />
-                  <Image
-                    src={item.src}
-                    alt={item.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-contain relative z-10 p-2 group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute top-3 right-3 z-20 px-2.5 py-1 rounded-full bg-white/90 text-[#140202] text-[10px] font-bold uppercase tracking-wider border border-[#D7C3B1]">
-                    {item.brand}
-                  </div>
-                </div>
-
-                <div className="p-6">
-                  <h3 className="font-serif text-base font-bold text-[#140202] mb-1">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs text-[#5A4842]">
-                    {item.subtitle}
-                  </p>
-                </div>
+                ) : (
+                  <>
+                    <Image
+                      src={CLINIC_VISUALS[activeVisual].src}
+                      alt=""
+                      fill
+                      aria-hidden="true"
+                      className="object-cover filter blur-md opacity-30 pointer-events-none"
+                    />
+                    <Image
+                      src={CLINIC_VISUALS[activeVisual].src}
+                      alt={CLINIC_VISUALS[activeVisual].title}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 60vw"
+                      className="object-contain relative z-10 p-4"
+                    />
+                  </>
+                )}
               </div>
-            ))}
+            </div>
           </div>
 
           {/* Callout Box Under Grid */}
@@ -554,42 +508,6 @@ export default function ClinicsPage() {
                 </div>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* 10. Final call to action: Dark section, centered text */}
-      <section className="py-24 sm:py-32 bg-[#140202] text-[#FAF6F0] text-center relative overflow-hidden">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#240404] text-[#D7C3B1] border border-[#520000]/60 text-xs font-bold uppercase tracking-[0.2em] mb-6">
-            <Sparkles className="w-3.5 h-3.5 text-[#D7C3B1]" />
-            <span>Ready For A Premium Feed?</span>
-          </div>
-
-          <h2 className="text-3xl sm:text-5xl font-serif font-bold text-white tracking-tight mb-6 leading-tight">
-            Elevate your clinic’s presence. <br />
-            <span className="text-[#D7C3B1] italic font-normal">Fill your appointment calendar.</span>
-          </h2>
-
-          <p className="text-sm sm:text-base text-[#FAF6F0]/80 mb-10 max-w-xl mx-auto leading-relaxed">
-            Send us your handle. We’ll review your Instagram feed, highlight quick wins, and show you how to turn visitors into booked treatments.
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button
-              onClick={handleOpenAudit}
-              className="w-full sm:w-auto px-9 py-4 rounded-full bg-[#520000] hover:bg-[#720909] text-white text-xs sm:text-sm font-bold uppercase tracking-wider transition-all shadow-md transform hover:-translate-y-0.5"
-            >
-              <span>Book a free audit</span>
-            </button>
-            <a
-              href="https://wa.me/923359441111"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto px-9 py-4 rounded-full bg-white/10 hover:bg-white/20 border border-[#D7C3B1]/40 text-white text-xs sm:text-sm font-bold uppercase tracking-wider transition-all"
-            >
-              <span>Chat on WhatsApp</span>
-            </a>
           </div>
         </div>
       </section>

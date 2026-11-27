@@ -43,9 +43,9 @@ export default function QuoteModal({
   const [email, setEmail] = useState("");
   const [brand, setBrand] = useState("");
   const [handle, setHandle] = useState("");
-  const [country, setCountry] = useState("");
-  const [budget, setBudget] = useState(BUDGET_RANGES[1]);
-  const [message, setMessage] = useState("");
+  const country = "";
+  const budget = BUDGET_RANGES[1];
+  const message = "";
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -182,7 +182,7 @@ export default function QuoteModal({
     const text = encodeURIComponent(
       `Hello Esha & Axoyl team,\n\nI just requested a ${
         mode === "audit" ? "Free Social Media Audit" : "Quote"
-      } for my brand:\n\n• Name: ${name || "N/A"}\n• Brand: ${brand || "N/A"}\n• Handle/URL: ${handle || "N/A"}\n• Country: ${country || "N/A"}\n• Services: ${selectedServices.join(", ") || "General Inquiry"}\n• Budget: ${budget}\n• Message: ${message || "N/A"}\n\nLooking forward to hearing from you within 24 hours!`
+      } for my brand:\n\n• Name: ${name || "N/A"}\n• Brand: ${brand || "N/A"}\n• Handle/URL: ${handle || "N/A"}\n• Services: ${selectedServices.join(", ") || "General Inquiry"}\n\nLooking forward to hearing from you within 24 hours!`
     );
     window.open(`https://wa.me/${EXACT_CONTACT.whatsappNumber}?text=${text}`, "_blank");
   };
@@ -319,11 +319,6 @@ export default function QuoteModal({
               <h3 className="text-2xl font-serif font-bold text-[#140202]">
                 {mode === "audit" ? "Free Social Media Audit" : "Tell Us About Your Brand"}
               </h3>
-              <p className="text-xs text-[#5A4842] mt-1 leading-relaxed">
-                {mode === "audit"
-                  ? "Send us your handle. Within 48 hours you'll get a short review of what's working, what isn't, and what we'd fix first. No contracts. No sales pitch."
-                  : "Every plan is custom quoted to your exact scope. We reply within 24 hours."}
-              </p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -411,53 +406,6 @@ export default function QuoteModal({
                     className="w-full bg-[#FAF6F0] border border-[#D7C3B1] rounded-xl px-3.5 py-2.5 text-xs text-[#140202] focus:outline-none focus:border-[#520000]"
                   />
                 </div>
-              </div>
-
-              {/* Country & Budget */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label className="text-[11px] font-bold uppercase tracking-wider text-[#140202] block mb-1">
-                    Country *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. UK, UAE, USA, Pakistan..."
-                    value={country}
-                    onChange={(e) => setCountry(e.target.value)}
-                    className="w-full bg-[#FAF6F0] border border-[#D7C3B1] rounded-xl px-3.5 py-2.5 text-xs text-[#140202] focus:outline-none focus:border-[#520000]"
-                  />
-                </div>
-                <div>
-                  <label className="text-[11px] font-bold uppercase tracking-wider text-[#140202] block mb-1">
-                    Monthly Budget Range
-                  </label>
-                  <select
-                    value={budget}
-                    onChange={(e) => setBudget(e.target.value)}
-                    className="w-full bg-[#FAF6F0] border border-[#D7C3B1] rounded-xl px-3.5 py-2.5 text-xs text-[#140202] focus:outline-none focus:border-[#520000]"
-                  >
-                    {BUDGET_RANGES.map((b) => (
-                      <option key={b} value={b}>
-                        {b}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              {/* Message */}
-              <div>
-                <label className="text-[11px] font-bold uppercase tracking-wider text-[#140202] block mb-1">
-                  Message / Current Bottleneck
-                </label>
-                <textarea
-                  rows={2}
-                  placeholder="Tell us what you want to achieve or where you feel stuck..."
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  className="w-full bg-[#FAF6F0] border border-[#D7C3B1] rounded-xl px-3.5 py-2.5 text-xs text-[#140202] focus:outline-none focus:border-[#520000]"
-                />
               </div>
 
               <div className="pt-2">

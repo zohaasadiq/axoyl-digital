@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Cormorant_Garamond } from "next/font/google";
+import { cookies } from "next/headers";
 import "./globals.css";
+import { RegionProvider, type Region } from "@/context/RegionContext";
+import RegionPrompt from "@/components/RegionPrompt";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -34,15 +37,23 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const regionCookie = cookieStore.get("axoyl_region")?.value;
+  const initialRegion: Region | null =
+    regionCookie === "PK" || regionCookie === "INTL" ? regionCookie : null;
+
   return (
     <html lang="en" className={`${inter.variable} ${cormorant.variable} scroll-smooth`}>
       <body className="bg-[#FAF6F0] text-[#140202] antialiased selection:bg-[#520000] selection:text-white">
-        {children}
+        <RegionProvider initialRegion={initialRegion}>
+          {children}
+          <RegionPrompt />
+        </RegionProvider>
       </body>
     </html>
   );

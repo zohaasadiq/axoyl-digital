@@ -11,7 +11,6 @@ import {
   Mail,
   CheckCircle2,
   ArrowRight,
-  TrendingUp,
   ShieldCheck,
   Building2,
   User,
@@ -258,73 +257,6 @@ export default function CaseStudiesPage() {
                 </div>
               </div>
             )}
-          </div>
-        </div>
-      </section>
-
-      {/* What's Inside the Dossier Preview */}
-      <section className="py-20 sm:py-28 bg-[#FAF6F0]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#520000] block mb-2">
-              Inside The Document
-            </span>
-            <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#140202] tracking-tight">
-              What You&apos;ll Find In The Case Studies
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                title: "Aesthetic Medicine & Clinics",
-                subtitle: "Skinsation & Sarivaa",
-                desc: "360° patient booking funnels, before/after compliance visuals, and how we filled high-ticket treatment schedules.",
-                tag: "Healthcare & MedSpa",
-              },
-              {
-                title: "Global Hospitality & F&B",
-                subtitle: "Loomi Tikka (Dubai)",
-                desc: "Viral footfall campaigns at Global Village, social menu styling, and high-conversion Deliveroo/Careem creative assets.",
-                tag: "F&B & Restaurants",
-              },
-              {
-                title: "Luxury Events & Dining",
-                subtitle: "Hestia Harlow (USA)",
-                desc: "End-to-end seasonal calendars (Fall to New Year), tablescape art direction, and partner collaboration PR.",
-                tag: "Seasonal Luxury",
-              },
-              {
-                title: "High-CTR Performance Ads",
-                subtitle: "NSG Roofing & Dekco",
-                desc: "Direct-response ad creative testing, scroll-stopping hooks, and local homeowner conversion funnels.",
-                tag: "Paid Acquisition",
-              },
-            ].map((card, i) => (
-              <div
-                key={i}
-                className="rounded-2xl bg-white border border-[#D7C3B1] p-6 shadow-sm hover:shadow-lg hover:border-[#520000] transition-all flex flex-col justify-between"
-              >
-                <div>
-                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#520000] block mb-1">
-                    {card.tag}
-                  </span>
-                  <h3 className="text-lg font-serif font-bold text-[#140202] mb-1">
-                    {card.title}
-                  </h3>
-                  <p className="text-xs font-serif italic text-[#520000] mb-3">
-                    {card.subtitle}
-                  </p>
-                  <p className="text-xs text-[#3D261E] leading-relaxed">
-                    {card.desc}
-                  </p>
-                </div>
-                <div className="pt-4 mt-4 border-t border-[#D7C3B1]/40 flex items-center gap-1.5 text-[11px] font-semibold text-[#520000]">
-                  <TrendingUp className="w-3.5 h-3.5" />
-                  <span>Enclosed in Dossier</span>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>

@@ -24,7 +24,6 @@ import {
 import { CLIENT_CASE_STUDIES } from "@/lib/data";
 
 export default function PortfolioPage() {
-  const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [activeMediaByCard, setActiveMediaByCard] = useState<
     Record<string, { type: "image" | "video"; src: string }>
   >({});
@@ -35,23 +34,6 @@ export default function PortfolioPage() {
   const [isPortfolioModalOpen, setIsPortfolioModalOpen] = useState(false);
   const [portfolioForm, setPortfolioForm] = useState({ name: "", email: "", brand: "" });
   const [portfolioSent, setPortfolioSent] = useState(false);
-
-  const categories = [
-    "all",
-    "Events & Hospitality",
-    "Food & Beverage",
-    "Skincare & Wellness",
-    "Aesthetic Clinic",
-    "Construction & Living",
-    "Travel & Hospitality",
-    "Brand Design & Toys",
-    "Performance Ads",
-  ];
-
-  const filteredStudies =
-    selectedCategory === "all"
-      ? CLIENT_CASE_STUDIES
-      : CLIENT_CASE_STUDIES.filter((c) => c.category === selectedCategory);
 
   const getCardMedia = (study: (typeof CLIENT_CASE_STUDIES)[0]) => {
     return activeMediaByCard[study.id] || { type: "image", src: study.images[0] };
@@ -97,73 +79,16 @@ export default function PortfolioPage() {
         }}
       />
 
-      {/* Hero Header (Roy's Digital Media / Trifid Style) */}
-      <section className="relative pt-44 sm:pt-52 pb-24 sm:pb-32 border-b border-[#D7C3B1]/60 bg-gradient-to-b from-[#FAF6F0] to-[#F4ECE3] overflow-hidden">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-[#D7C3B1]/40 rounded-full blur-[140px] pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#520000]/25 bg-white mb-5 shadow-xs">
-            <Sparkles className="w-3.5 h-3.5 text-[#520000]" />
-            <span className="text-xs font-bold tracking-[0.2em] text-[#520000] uppercase">
-              Client Case Studies · Drive Assets
-            </span>
-          </div>
-
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-serif font-bold text-[#140202] tracking-tight max-w-4xl mx-auto leading-[1.08]">
-            Selected Works &amp;{" "}
-            <span className="italic font-normal text-[#520000]">Brand Stories</span>.
-          </h1>
-
-          <p className="mt-5 text-base sm:text-lg text-[#3D261E] max-w-3xl mx-auto font-normal leading-relaxed">
-            From the bustling flavours of Global Village Dubai to high-ticket aesthetic clinics and luxury US dining calendars — take a closer look at what we build for our partners.
-          </p>
-
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <button
-              onClick={() => setIsPortfolioModalOpen(true)}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#520000] hover:bg-[#380000] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-md"
-            >
-              <Mail className="w-4 h-4" />
-              <span>Request Full Confidential Portfolio</span>
-            </button>
-            <a
-              href="https://wa.me/923359441111"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white hover:bg-[#FAF6F0] border border-[#D7C3B1] text-[#140202] text-xs font-bold uppercase tracking-wider transition-all shadow-xs"
-            >
-              <span>DM us for full results</span>
-              <ArrowUpRight className="w-4 h-4 text-[#520000]" />
-            </a>
-          </div>
-        </div>
-      </section>
-
       {/* Main Case Studies Section */}
       <section className="py-20 sm:py-28 bg-[#FAF6F0]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Category Filter Pills (Centered & Wrapped with Zero Scrollbars) */}
-          <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mb-16 max-w-5xl mx-auto px-2">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
-                  selectedCategory === cat
-                    ? "bg-[#520000] text-white shadow-xs font-bold"
-                    : "bg-white text-[#3D261E] border border-[#D7C3B1] hover:border-[#520000]"
-                }`}
-              >
-                {cat === "all" ? "All Projects (8)" : cat}
-              </button>
-            ))}
-          </div>
-
           {/* 8 Case Study Cards (Alternating Zig-Zag Layout with Inline Media Switching) */}
           <div className="space-y-16 sm:space-y-20">
-            {filteredStudies.map((study, idx) => {
+            {CLIENT_CASE_STUDIES.map((study, idx) => {
               const isEven = idx % 2 === 0;
               const currentMedia = getCardMedia(study);
+              const photoThumbs = study.images.slice(0, study.video ? 4 : 5);
+              const thumbCount = photoThumbs.length + (study.video ? 1 : 0);
               return (
                 <div
                   key={study.id}
@@ -191,7 +116,7 @@ export default function PortfolioPage() {
                     </div>
                   </div>
 
-                  <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+                  <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
                     {/* Visual Media Showcase Column (Alternating: isEven -> Left, !isEven -> Right) */}
                     <div
                       className={`lg:col-span-5 ${
@@ -200,7 +125,7 @@ export default function PortfolioPage() {
                     >
                       <div>
                         {/* Main Media Display Frame: Replaced Inline when Thumbnail is Clicked */}
-                        <div className="relative aspect-[4/5] max-h-[500px] w-full rounded-2xl bg-[#140202] overflow-hidden group shadow-md group-hover/card:shadow-2xl group-hover/card:border-white/25 border border-[#520000]/25 transition-all duration-500">
+                        <div className="relative aspect-[4/3] max-h-[360px] w-full rounded-2xl bg-[#140202] overflow-hidden group shadow-md group-hover/card:shadow-2xl group-hover/card:border-white/25 border border-[#520000]/25 transition-all duration-500">
                           {currentMedia.type === "video" ? (
                             <div className="relative w-full h-full bg-black flex items-center justify-center">
                               <video
@@ -265,13 +190,16 @@ export default function PortfolioPage() {
                         </div>
 
                         {/* Thumbnail Strip: Reel Thumbnail with Play Icon + Photo Thumbnails */}
-                        <div className="grid grid-cols-4 sm:grid-cols-5 gap-2 mt-2.5">
+                        <div
+                          className="grid gap-2 mt-2.5"
+                          style={{ gridTemplateColumns: `repeat(${thumbCount}, minmax(0, 1fr))` }}
+                        >
                           {/* If Reel exists, show Reel Button Thumbnail */}
                           {study.video && (
                             <button
                               type="button"
                               onClick={() => handleSelectMedia(study.id, "video", study.video!)}
-                              className={`relative aspect-[4/5] rounded-xl overflow-hidden bg-black border cursor-pointer transition-all flex items-center justify-center group/thumb ${
+                              className={`relative aspect-square rounded-xl overflow-hidden bg-black border cursor-pointer transition-all flex items-center justify-center group/thumb ${
                                 currentMedia.type === "video"
                                   ? "border-white ring-2 ring-white scale-105 shadow-xl"
                                   : "border-[#520000] group-hover/card:border-white/30 hover:border-white opacity-85 hover:opacity-100"
@@ -297,7 +225,7 @@ export default function PortfolioPage() {
                           )}
 
                           {/* Photo Thumbnails */}
-                          {study.images.slice(0, study.video ? 4 : 5).map((img, thumbIdx) => {
+                          {photoThumbs.map((img, thumbIdx) => {
                             const isSelected =
                               currentMedia.type === "image" && currentMedia.src === img;
                             return (
@@ -305,7 +233,7 @@ export default function PortfolioPage() {
                                 key={thumbIdx}
                                 type="button"
                                 onClick={() => handleSelectMedia(study.id, "image", img)}
-                                className={`relative aspect-[4/5] rounded-xl overflow-hidden bg-[#1E0404] border cursor-pointer transition-all group/thumb ${
+                                className={`relative aspect-square rounded-xl overflow-hidden bg-[#1E0404] border cursor-pointer transition-all group/thumb ${
                                   isSelected
                                     ? "border-white ring-2 ring-white scale-105 shadow-xl"
                                     : "border-[#D7C3B1]/70 group-hover/card:border-white/20 hover:border-white"
@@ -333,58 +261,51 @@ export default function PortfolioPage() {
                     <div
                       className={`lg:col-span-7 ${
                         isEven ? "lg:order-2" : "lg:order-1"
-                      } flex flex-col justify-between py-1`}
+                      } space-y-5 py-1`}
                     >
                       <div>
-                        <div className="mb-4">
-                          <span className="text-xs font-bold uppercase tracking-wider text-[#520000] group-hover/card:text-[#D7C3B1] block mb-1 group-hover/card:tracking-widest transition-all duration-300">
-                            {study.service}
-                          </span>
-                          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#140202] group-hover/card:text-white tracking-tight mb-2.5 transition-colors duration-300">
-                            {study.name}
-                          </h2>
-                          <div className="border-l-2 border-[#520000] group-hover/card:border-white/50 group-hover/card:border-l-4 group-hover/card:pl-4 pl-3.5 py-0.5 transition-all duration-300">
-                            <p className="text-sm sm:text-base font-serif italic text-[#520000]/90 group-hover/card:text-[#FAF6F0]/90 transition-colors duration-300">
-                              &ldquo;{study.tagline}&rdquo;
-                            </p>
-                          </div>
+                        <span className="text-xs font-bold uppercase tracking-wider text-[#520000] group-hover/card:text-[#D7C3B1] block mb-1 group-hover/card:tracking-widest transition-all duration-300">
+                          {study.service}
+                        </span>
+                        <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#140202] group-hover/card:text-white tracking-tight mb-2.5 transition-colors duration-300">
+                          {study.name}
+                        </h2>
+                        <div className="border-l-2 border-[#520000] group-hover/card:border-white/50 group-hover/card:border-l-4 group-hover/card:pl-4 pl-3.5 py-0.5 transition-all duration-300">
+                          <p className="text-sm sm:text-base font-serif italic text-[#520000]/90 group-hover/card:text-[#FAF6F0]/90 transition-colors duration-300">
+                            &ldquo;{study.tagline}&rdquo;
+                          </p>
                         </div>
-
-                        {/* Deliverables Badges */}
-                        <div className="mb-5">
-                          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#5A4842]/70 group-hover/card:text-[#D7C3B1] block mb-2 transition-colors duration-300">
-                            Scope &amp; Deliverables
-                          </span>
-                          <div className="flex flex-wrap gap-1.5">
-                            {study.deliverables.map((item, dIdx) => (
-                              <span
-                                key={dIdx}
-                                className="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-[#FAF6F0] text-[#3D261E] border border-[#D7C3B1]/80 group-hover/card:bg-white/10 group-hover/card:border-white/20 group-hover/card:text-white transition-all duration-300"
-                              >
-                                {item}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* Strategic Narrative */}
-                        <p className="text-sm sm:text-[14.5px] text-[#3D261E] group-hover/card:text-white/85 leading-relaxed mb-5 font-normal whitespace-pre-line transition-colors duration-300">
-                          {study.description}
-                        </p>
-
-                        {/* Client Testimonial / Quote Excerpt */}
-                        {study.clientQuote && (
-                          <div className="p-3 sm:p-3.5 rounded-xl bg-[#FAF6F0]/90 group-hover/card:bg-white/10 group-hover/card:border-white/20 border border-[#D7C3B1]/80 mb-5 text-xs text-[#520000] group-hover/card:text-white font-serif italic flex items-start gap-2.5 shadow-2xs transition-all duration-300">
-                            <Quote className="w-3.5 h-3.5 text-[#520000] group-hover/card:text-[#D7C3B1] shrink-0 mt-0.5 rotate-180 transition-colors duration-300" />
-                            <span className="leading-relaxed">&ldquo;{study.clientQuote}&rdquo;</span>
-                          </div>
-                        )}
                       </div>
 
-                      {/* Bottom Section: Metrics Strip & Action Buttons */}
-                      <div className="pt-4 border-t border-[#D7C3B1]/70 group-hover/card:border-white/15 transition-colors duration-300">
+                      {/* Deliverables Badges */}
+                      <div>
+                        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#5A4842]/70 group-hover/card:text-[#D7C3B1] block mb-2 transition-colors duration-300">
+                          Scope &amp; Deliverables
+                        </span>
+                        <div className="flex flex-wrap gap-1.5">
+                          {study.deliverables.map((item, dIdx) => (
+                            <span
+                              key={dIdx}
+                              className="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-[#FAF6F0] text-[#3D261E] border border-[#D7C3B1]/80 group-hover/card:bg-white/10 group-hover/card:border-white/20 group-hover/card:text-white transition-all duration-300"
+                            >
+                              {item}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Client Testimonial / Quote Excerpt */}
+                      {study.clientQuote && (
+                        <div className="p-3 sm:p-3.5 rounded-xl bg-[#FAF6F0]/90 group-hover/card:bg-white/10 group-hover/card:border-white/20 border border-[#D7C3B1]/80 text-xs text-[#520000] group-hover/card:text-white font-serif italic flex items-start gap-2.5 shadow-2xs transition-all duration-300">
+                          <Quote className="w-3.5 h-3.5 text-[#520000] group-hover/card:text-[#D7C3B1] shrink-0 mt-0.5 rotate-180 transition-colors duration-300" />
+                          <span className="leading-relaxed">&ldquo;{study.clientQuote}&rdquo;</span>
+                        </div>
+                      )}
+
+                      {/* Metrics Strip & Action Buttons */}
+                      <div className="pt-5 border-t border-[#D7C3B1]/70 group-hover/card:border-white/15 transition-colors duration-300 space-y-5">
                         {/* 3-Column Micro Metrics Grid */}
-                        <div className="grid grid-cols-3 gap-2 p-3 rounded-2xl bg-[#FAF6F0] group-hover/card:bg-black/25 group-hover/card:border-white/15 border border-[#D7C3B1]/80 mb-5 transition-all duration-300">
+                        <div className="grid grid-cols-3 gap-2 p-3 rounded-2xl bg-[#FAF6F0] group-hover/card:bg-black/25 group-hover/card:border-white/15 border border-[#D7C3B1]/80 transition-all duration-300">
                           {study.metrics.map((m, mIdx) => (
                             <div
                               key={mIdx}

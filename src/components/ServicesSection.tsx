@@ -10,7 +10,6 @@ import {
   BarChart3,
   Building2,
   UserCheck,
-  Sparkles,
   ArrowUpRight,
 } from "lucide-react";
 import { WE_DEAL_IN } from "@/lib/data";
@@ -42,16 +41,9 @@ export default function ServicesSection({ onOpenAudit }: ServicesSectionProps) {
   return (
     <section id="services" className="relative py-28 bg-[#FAF6F0] border-t border-[#D7C3B1]/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header directly from Portfolio Page 3 */}
+        {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-8 border-b border-[#D7C3B1]/60">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#520000]/25 bg-white mb-5 shadow-sm">
-              <Sparkles className="w-3.5 h-3.5 text-[#520000]" />
-              <span className="text-xs font-bold tracking-[0.2em] text-[#520000] uppercase">
-                Portfolio Page 03 · Core Capabilities
-              </span>
-            </div>
-
             <h2 className="text-4xl sm:text-6xl md:text-7xl font-display font-medium text-[#140202] uppercase tracking-tight">
               WE DEAL IN<span className="text-[#520000]">.</span>
             </h2>

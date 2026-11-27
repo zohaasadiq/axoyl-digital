@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { Sparkles, Globe2, Users, CheckCircle2, ArrowUpRight } from "lucide-react";
+import { Globe2, Users, CheckCircle2, ArrowUpRight } from "lucide-react";
 import { INFLUENCER_SECTION, ENGAGEMENT_SECTION } from "@/lib/data";
 
 interface InfluencerSectionProps {
@@ -15,15 +15,8 @@ export default function InfluencerSection({ onOpenAudit }: InfluencerSectionProp
   return (
     <section className="relative py-28 bg-[#FAF6F0] border-t border-[#D7C3B1]/60 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header directly from Page 12 of Portfolio */}
+        {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#520000]/25 bg-white mb-5 shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-[#520000]" />
-            <span className="text-xs font-bold tracking-[0.2em] text-[#520000] uppercase">
-              Portfolio Pages 12 - 16
-            </span>
-          </div>
-
           <h2 className="text-4xl sm:text-6xl md:text-7xl font-display font-medium text-[#140202] uppercase tracking-tight">
             {INFLUENCER_SECTION.title}
           </h2>
@@ -75,7 +68,7 @@ export default function InfluencerSection({ onOpenAudit }: InfluencerSectionProp
           ))}
         </div>
 
-        {/* Slide Showcase Tabs from Portfolio Pages 12, 13, 14, 15, 16 */}
+        {/* Slide Showcase Tabs */}
         <div className="rounded-3xl bg-white border border-[#D7C3B1] p-8 shadow-xl">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-6 border-b border-[#D7C3B1]/40">
             <div>
@@ -83,7 +76,7 @@ export default function InfluencerSection({ onOpenAudit }: InfluencerSectionProp
                 Documented Campaigns &amp; Onboarding
               </span>
               <h4 className="text-xl sm:text-2xl font-serif font-bold text-[#140202] mt-1">
-                Portfolio Slide Proof (Pages 12 - 16)
+                Campaign Proof
               </h4>
             </div>
 
@@ -107,7 +100,7 @@ export default function InfluencerSection({ onOpenAudit }: InfluencerSectionProp
           <div className="relative h-72 sm:h-96 md:h-[480px] w-full rounded-2xl overflow-hidden border border-[#D7C3B1] bg-black">
             <Image
               src={`/work/slide_${12 + activeSlide}.png`}
-              alt={`Influencer Campaign Portfolio Slide ${12 + activeSlide}`}
+              alt="Influencer campaign proof"
               fill
               className="object-contain"
             />
@@ -115,7 +108,7 @@ export default function InfluencerSection({ onOpenAudit }: InfluencerSectionProp
 
           <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-medium text-[#5A4842]">
             <div>
-              <strong className="text-[#140202]">Page {12 + activeSlide} of Axoyl Portfolio:</strong>{" "}
+              <strong className="text-[#140202]">Campaign Focus:</strong>{" "}
               {activeSlide === 4
                 ? ENGAGEMENT_SECTION.title
                 : INFLUENCER_SECTION.title}

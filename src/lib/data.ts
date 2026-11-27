@@ -315,16 +315,40 @@ export const EXACT_TEAM: TeamMember[] = [
     image: "/team/shahzad-designer.jpeg",
   },
   {
-    name: "Sana",
-    role: "PR MANAGER",
-    tag: "PR & Media",
-    image: "/team/sana-pr.jpeg",
+    name: "Anamta Ismael",
+    role: "TEAM MEMBER",
+    tag: "Axoyl Digital",
+    image: "/team/anamta-ismael.jpeg",
   },
   {
-    name: "Zuha",
-    role: "SOCIAL MEDIA SPECIALIST",
-    tag: "SMM Specialist",
-    image: "/team/zuha-smm.jpeg",
+    name: "Bilal Zahid",
+    role: "TEAM MEMBER",
+    tag: "Axoyl Digital",
+    image: "/team/bilal-zahid.jpeg",
+  },
+  {
+    name: "Chaudhary Zuhaib",
+    role: "TEAM MEMBER",
+    tag: "Axoyl Digital",
+    image: "/team/chaudhary-zuhaib.jpeg",
+  },
+  {
+    name: "Fatima",
+    role: "TEAM MEMBER",
+    tag: "Axoyl Digital",
+    image: "/team/fatima.jpeg",
+  },
+  {
+    name: "Kashaf",
+    role: "TEAM MEMBER",
+    tag: "Axoyl Digital",
+    image: "/team/kashaf.jpeg",
+  },
+  {
+    name: "Shayan",
+    role: "TEAM MEMBER",
+    tag: "Axoyl Digital",
+    image: "/team/shayan.jpeg",
   },
 ];
 

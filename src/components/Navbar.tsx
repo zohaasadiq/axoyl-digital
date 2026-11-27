@@ -5,19 +5,25 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ArrowUpRight } from "lucide-react";
+import { useRegion } from "@/context/RegionContext";
 
 interface NavbarProps {
   onOpenQuote?: (service?: string) => void;
   onOpenAudit?: () => void;
 }
 
-const NAV_LINKS = [
+const PK_NAV_LINKS = [
   { href: "/", label: "Home" },
-  { href: "/clinics", label: "For Clinics" },
   { href: "/portfolio", label: "Work" },
   { href: "/case-studies", label: "Case Studies" },
   { href: "/services", label: "Services" },
-  { href: "/plans", label: "Plans" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+];
+
+const INTL_NAV_LINKS = [
+  { href: "/clinics", label: "Home" },
+  { href: "/case-studies", label: "Case Studies" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
@@ -26,6 +32,10 @@ export default function Navbar({ onOpenQuote, onOpenAudit }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { region } = useRegion();
+  const isIntl = region === "INTL";
+  const navLinks = isIntl ? INTL_NAV_LINKS : PK_NAV_LINKS;
+  const homeHref = isIntl ? "/clinics" : "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,7 +65,7 @@ export default function Navbar({ onOpenQuote, onOpenAudit }: NavbarProps) {
         }`}
       >
         {/* Brand Logo */}
-        <Link href="/" className="flex items-center group py-0.5">
+        <Link href={homeHref} className="flex items-center group py-0.5">
           <div className="relative h-10 sm:h-11 w-44 sm:w-52 transition-transform group-hover:scale-105 flex items-center">
             <Image
               src="/brand/logo-tight-maroon.png"
@@ -70,7 +80,7 @@ export default function Navbar({ onOpenQuote, onOpenAudit }: NavbarProps) {
 
         {/* Desktop Navigation Links */}
         <nav className="hidden md:flex items-center gap-7">
-          {NAV_LINKS.map((link) => {
+          {navLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
               <Link
@@ -124,7 +134,7 @@ export default function Navbar({ onOpenQuote, onOpenAudit }: NavbarProps) {
       {mobileMenuOpen && (
         <div className="md:hidden mt-2 max-w-7xl mx-auto rounded-3xl bg-white border border-[#D7C3B1] shadow-2xl p-5 pointer-events-auto animate-fade-in text-[#140202]">
           <nav className="flex flex-col gap-2">
-            {NAV_LINKS.map((link) => {
+            {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
                 <Link

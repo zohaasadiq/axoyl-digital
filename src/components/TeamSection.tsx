@@ -2,29 +2,18 @@
 
 import React from "react";
 import Image from "next/image";
-import { Sparkles, MessageCircle, Star, ArrowUpRight, Award, CheckCircle2 } from "lucide-react";
+import { Star, Award, CheckCircle2 } from "lucide-react";
 import { EXACT_TEAM } from "@/lib/data";
 
-interface TeamSectionProps {
-  onOpenAudit?: () => void;
-}
-
-export default function TeamSection({ onOpenAudit }: TeamSectionProps) {
+export default function TeamSection() {
   const founder = EXACT_TEAM.find((m) => m.name.toLowerCase().includes("esha")) || EXACT_TEAM[0];
   const specialists = EXACT_TEAM.filter((m) => m !== founder);
 
   return (
     <section id="team" className="relative py-28 bg-[#FAF6F0] border-t border-[#D7C3B1]/60 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header directly from Portfolio Page 22 */}
+        {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#520000]/25 bg-white mb-5 shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-[#520000]" />
-            <span className="text-xs font-bold tracking-[0.2em] text-[#520000] uppercase">
-              Portfolio Page 22 · Agency Leadership
-            </span>
-          </div>
-
           <h2 className="text-4xl sm:text-6xl md:text-7xl font-display font-medium text-[#140202] uppercase tracking-tight">
             Meet The Team<span className="text-[#520000]">.</span>
           </h2>
@@ -32,10 +21,6 @@ export default function TeamSection({ onOpenAudit }: TeamSectionProps) {
           <h3 className="mt-3 text-lg sm:text-xl font-serif text-[#520000] font-bold">
             Behind The Creative Process Of Building Your Brand
           </h3>
-
-          <p className="mt-4 text-base text-[#3D261E] font-normal leading-relaxed">
-            Founded and creatively spearheaded by Esha, supported by a multidisciplinary unit of brand designers, PR strategists, and viral social media specialists.
-          </p>
         </div>
 
         {/* 1. GRAND FOUNDER SPOTLIGHT CARD (Striking High-Contrast Velvet Maroon Feature) */}
@@ -101,10 +86,6 @@ export default function TeamSection({ onOpenAudit }: TeamSectionProps) {
                     &ldquo;We don&apos;t just post content — we craft cultural positioning, magnetic aesthetics, and compounding engagement that transforms everyday feeds into authority powerhouses.&rdquo;
                   </blockquote>
 
-                  <p className="text-xs sm:text-sm text-white/85 font-light leading-relaxed mb-6">
-                    Esha personally leads creative direction and campaign storytelling across all client accounts. Her strategic execution and hands-on dedication are praised repeatedly across every client collaboration — from luxury US catering powerhouses to top-tier aesthetic clinics and clean beauty brands.
-                  </p>
-
                   {/* Verified Praise Tags Mentioning Esha by name */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
                     <div className="p-3.5 rounded-xl bg-black/30 border border-white/10 text-xs">
@@ -125,29 +106,6 @@ export default function TeamSection({ onOpenAudit }: TeamSectionProps) {
                       </span>
                     </div>
                   </div>
-                </div>
-
-                {/* Direct Action with Esha */}
-                <div className="pt-6 border-t border-white/15 flex flex-wrap items-center gap-4">
-                  <a
-                    href="https://wa.me/923492976505?text=Hi%20Esha,%20I'd%20like%20to%20discuss%20creative%20direction%20and%20social%20media%20for%20my%20brand."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#140202] bg-[#D7C3B1] hover:bg-white hover:shadow-lg transition-all"
-                  >
-                    <MessageCircle className="w-4 h-4 text-[#520000]" />
-                    <span>Connect Directly with Esha</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </a>
-
-                  {onOpenAudit && (
-                    <button
-                      onClick={onOpenAudit}
-                      className="px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#D7C3B1] border border-[#D7C3B1]/40 hover:border-white hover:text-white transition-all"
-                    >
-                      Book 1:1 Creative Review
-                    </button>
-                  )}
                 </div>
               </div>
             </div>

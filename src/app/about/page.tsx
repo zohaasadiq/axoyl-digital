@@ -3,46 +3,19 @@
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import AuditModal from "@/components/AuditModal";
+import QuoteModal from "@/components/QuoteModal";
 import TeamSection from "@/components/TeamSection";
-import { Sparkles, Award, Globe, ShieldCheck, HeartHandshake } from "lucide-react";
-import { PORTFOLIO_HEADER } from "@/lib/data";
+import { Award, Globe, ShieldCheck, HeartHandshake } from "lucide-react";
 
 export default function AboutPage() {
-  const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
 
   return (
     <main className="min-h-screen bg-[#FAF6F0] text-[#140202]">
-      <Navbar onOpenAudit={() => setIsAuditModalOpen(true)} />
-
-      {/* Hero Header */}
-      <section className="relative pt-44 sm:pt-48 pb-20 overflow-hidden border-b border-[#D7C3B1]/60 bg-gradient-to-b from-[#FAF6F0] to-[#F4ECE3]">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-[#D7C3B1]/40 rounded-full blur-[140px] pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#520000]/25 bg-white mb-5 shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-[#520000]" />
-            <span className="text-xs font-bold tracking-[0.2em] text-[#520000] uppercase">
-              Portfolio Page 22 · Leadership &amp; Hub
-            </span>
-          </div>
-
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-display font-medium text-[#140202] uppercase tracking-tight max-w-4xl mx-auto leading-[1.08]">
-            Behind The Creative Process Of{" "}
-            <span className="italic font-serif font-normal text-[#520000]">
-              Building Your Brand
-            </span>
-            .
-          </h1>
-
-          <p className="mt-5 text-base sm:text-lg text-[#3D261E] max-w-3xl mx-auto font-normal leading-relaxed">
-            Axoyl Digital was founded to bridge the gap between creative visual artistry and real commercial revenue. Meet the collective of strategists, designers, and video producers turning social feeds into cultural authority.
-          </p>
-        </div>
-      </section>
+      <Navbar onOpenQuote={() => setIsQuoteModalOpen(true)} />
 
       {/* Team Showcase with Prominent Founder Spotlight */}
-      <TeamSection onOpenAudit={() => setIsAuditModalOpen(true)} />
+      <TeamSection />
 
       {/* Agency Values Strip */}
       <section className="py-24 bg-[#FAF6F0] border-t border-[#D7C3B1]/60">
@@ -97,7 +70,7 @@ export default function AboutPage() {
       </section>
 
       <Footer />
-      <AuditModal isOpen={isAuditModalOpen} onClose={() => setIsAuditModalOpen(false)} />
+      <QuoteModal isOpen={isQuoteModalOpen} onClose={() => setIsQuoteModalOpen(false)} />
     </main>
   );
 }
